@@ -32,7 +32,7 @@ const Settings = () => {
     <>
       <Header />
       <div className="flex">
-        <div className="w-1/4 bg-[#f3e5dc] min-h-screen shadow-lg">
+        <div className="w-1/4 bg-[#24160f] min-h-screen shadow-lg">
           <Nav />
         </div>
 

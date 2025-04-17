@@ -93,18 +93,26 @@ export const allProducts = async (req, res) => {
 //delete product
 export const deleteProduct = async (req, res) => {
   try {
-    await Product.findByIdAndDelete(req.body.id);
-    res.json({ sucess: true, message: "Product Removed" });
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ success: false, message: "Product ID is required" });
+    }
+
+    await Product.findByIdAndDelete(id);
+    res.json({ success: true, message: "Product Removed" });
   } catch (err) {
     console.error("ERROR:", err);
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
+
 //update product
 // update product
 export const updateProduct = async (req, res) => {
   try {
+    const { id } = req.params;
     const {
       title,
       price,

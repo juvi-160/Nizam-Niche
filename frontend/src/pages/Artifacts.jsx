@@ -26,7 +26,7 @@ const Artifacts = () => {
         {/* figures */}
         <div>
           <h1 className="flex justify-center pt-10 text-[#24160f] text-2xl font-bold">SCULPTURES AND MINIATURES</h1>
-          <div className="grid grid-cols-2  gap-4 pr-30 pl-30 pt-5 mr-15 ml-15 flex justify-center items-center">
+          <div className="grid grid-cols-2  gap-4 pr-30 pl-30 pt-5 mr-15 ml-15 justify-center items-center">
             <img src={img1} alt="1" className="w-full h-80"/>
             <img src={img2} alt="2" className="w-full h-80"/>
           </div>
