@@ -21,12 +21,19 @@ Whether you're passionate about ethnic fashion or looking to own a piece of Decc
 🔍 Search & Filter Options – Quickly find what you’re looking for
 
 🛠️ Tech Stack
+
 Frontend: React.js, Tailwind CSS
+
 Backend: Node.js, Express.js
+
 Database: MongoDB (via Mongoose)
+
 Authentication: JWT
+
 Deployment: 
 
 📬 Contact
+
 Made with ❤️ by Juveria Yameen
+
 📧 juveriayameen160@gmail.com
