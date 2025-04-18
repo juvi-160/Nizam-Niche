@@ -24,158 +24,129 @@ import img21 from "../assets/c21.png";
 import img22 from "../assets/c22.png";
 import img23 from "../assets/c23.png";
 
-
 const Culture = () => {
   return (
-    <div className='bg-[#EFD1C0]'>
+    <div className="bg-[#EFD1C0]">
       <Layout>
-        {/* main */}
-        <div>
-          <div>
-            <h1 className='bg-[#24160f] text-[#efd1c0] flex justify-center p-2 text-2xl'>
-              Uncover the Rich traditions and timless heriatge of Hyderabad
-            </h1>
-          </div>
-          <div className="bg-[#6b1d1d]">
-            <div className="grid grid-cols-3 gap-10 p-10">
-              <img src={img1} alt="1" className="h-120 w-full" />
-              <img src={img2} alt="2" className="h-120 w-full" />
-              <img src={img3} alt="3" className="h-120 w-full" />
-            </div>
-          </div>
+        {/* Header */}
+        <h1 className="bg-[#24160f] text-[#efd1c0] text-center p-4 text-xl md:text-2xl font-semibold">
+          Uncover the Rich Traditions and Timeless Heritage of Hyderabad
+        </h1>
+
+        {/* Top Images */}
+        <div className="bg-[#6b1d1d] p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <img src={img1} alt="1" className="w-full object-cover rounded-md" />
+          <img src={img2} alt="2" className="w-full object-cover rounded-md" />
+          <img src={img3} alt="3" className="w-full object-cover rounded-md" />
         </div>
 
-        {/* Historical highlights */}
-        <div>
-          <h1 className='flex justify-center pt-10 text-[#24160f] text-3xl font-bold'>Historical Highlights</h1>
-          <div className="flex gap-2 m-10">
-            <div className="grid grid-cols-2 ">
-              <img src={img4} alt="1" className="h-60 w-full" />
-              <img src={img5} alt="2" className="h-60 w-full" />
+        {/* Historical Highlights */}
+        <section className="mt-10">
+          <h2 className="text-center text-2xl md:text-3xl text-[#24160f] font-bold">Historical Highlights</h2>
+          <div className="flex flex-col md:flex-row gap-4 p-4">
+            <div className="grid grid-cols-2 gap-2 md:w-1/2">
+              <img src={img4} alt="4" className="w-full h-60 object-cover rounded-md" />
+              <img src={img5} alt="5" className="w-full h-60 object-cover rounded-md" />
             </div>
-            <div className="flex justify-center items-center bg-[#6b1d1d] text-white w-full p-20 text-xl">
-              <p>
-              Hyderabad, known as the "City of Pearls," has a history rooted in grandeur and innovation. Founded in 1591 by Muhammad Quli Qutb Shah, it flourished under the Nizams' rule, blending Indo-Islamic, Persian, and Deccan cultures. 
-              </p>
+            <div className="bg-[#6b1d1d] text-white p-6 md:w-1/2 rounded-md text-justify">
+              Hyderabad, known as the "City of Pearls," has a history rooted in grandeur and innovation. Founded in 1591 by Muhammad Quli Qutb Shah, it flourished under the Nizams' rule, blending Indo-Islamic, Persian, and Deccan cultures.
             </div>
           </div>
 
-          <div className="flex gap-2 mt-5 m-10">
-            <div className="flex justify-center items-center bg-[#6b1d1d] text-white w-full p-20 text-xl">
-              <p>
+          <div className="flex flex-col md:flex-row-reverse gap-4 p-4">
+            <div className="grid grid-cols-2 gap-2 md:w-1/2">
+              <img src={img6} alt="6" className="w-full h-60 object-cover rounded-md" />
+              <img src={img7} alt="7" className="w-full h-60 object-cover rounded-md" />
+            </div>
+            <div className="bg-[#6b1d1d] text-white p-6 md:w-1/2 rounded-md text-justify">
               The city is home to iconic landmarks like the Charminar and Chowmahalla Palace, which stand as symbols of its glorious past. Festivals like Bonalu and Eid reflect its vibrant cultural diversity.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 ">
-              <img src={img6} alt="1" className="h-60 w-full"/>
-              <img src={img7} alt="2" className="h-60 w-full"/>
             </div>
           </div>
-          <div className="flex justify-center mt-10">
-          <button className="bg-[#24160f] text-[#efd1c0] flex justify-center items-center pl-10 pr-10 pt-2 pb-2 text-2xl font-bold rounded-2xl hover:bg-[#6b1d1d] hover:text-[#efd1c0] ">
-              {" "}
+          <div className="flex justify-center my-6">
+            <button className="bg-[#24160f] text-[#efd1c0] px-6 py-2 text-lg rounded-2xl font-bold hover:bg-[#6b1d1d]">
               Buy Products
             </button>
           </div>
-        </div>
+        </section>
 
-        {/* Traditional crafts */}
-        <div className="mt-10">
-          <h1 className='flex justify-center pt-10 text-[#24160f] text-3xl pb-5 font-bold'>Traditional Crafts</h1>
-          <div>
-            <div className="grid grid-cols-4 gap-2 p-2 m-2">
-              <img src={img11} alt="1" className="h-80 w-full"/>
-              <img src={img9} alt="2" className="h-80 w-full"/>
-              <img src={img10} alt="3" className="h-80 w-full"/>
-              <img src={img11} alt="4" className="h-80 w-full"/>
-            </div>
-
-            <div className="flex justify-center items-center bg-[#6b1d1d] text-white p-10 text-xl">
-              <p>
-                
-              Hyderabadi artifacts capture the essence of the city’s rich history and artistic legacy. Islamic wall art, with its intricate calligraphy and geometric designs, brings a sense of spiritual elegance to any space. The timeless Bidriware, featuring silver inlay on black metal, offers exquisite vases, trays, and decorative items that speak of unparalleled craftsmanship. Paintings, , celebrating Hyderabad's regal past. Sculptures and miniatures, from brass figurines to replicas of iconic monuments like Charminar, embody the city’s architectural grandeur and cultural heritage
-              </p>
-            </div>
-            <div className="flex justify-center mt-10">
-            <button className="bg-[#24160f] text-[#efd1c0] flex justify-center items-center pl-10 pr-10 pt-2 pb-2 text-2xl font-bold rounded-2xl hover:bg-[#6b1d1d] hover:text-[#efd1c0] ">
-              {" "}
-              Buy Products
-            </button>
-            </div>
+        {/* Traditional Crafts */}
+        <section className="mt-10">
+          <h2 className="text-center text-2xl md:text-3xl text-[#24160f] font-bold">Traditional Crafts</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-4">
+            <img src={img8} alt="11" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img9} alt="9" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img10} alt="10" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img11} alt="11" className="h-60 md:h-80 object-cover rounded-md" />
           </div>
-        </div>
-
-        {/*art and architecture*/}
-        <div className="mt-10">
-          <h1 className='flex justify-center pt-10 text-[#24160f] text-3xl pb-5 font-bold'>Art And Architecture</h1>
-          <div className="grid grid-cols-4">
-            <img src={img12} alt="1" className="h-80 w-full"/>
-            <img src={img13} alt="2" className="h-80 w-full"/>
-            <img src={img14} alt="3" className="h-80 w-full"/>
-            <img src={img15} alt="4" className="h-80 w-full"/>
+          <div className="bg-[#6b1d1d] text-white p-6 mx-4 mt-4 rounded-md text-justify">
+            Hyderabadi artifacts capture the essence of the city’s rich history and artistic legacy. Islamic wall art, with its intricate calligraphy and geometric designs, brings a sense of spiritual elegance to any space. The timeless Bidriware, featuring silver inlay on black metal, offers exquisite vases, trays, and decorative items. Paintings and miniatures, from brass figurines to replicas of iconic monuments, embody the city’s cultural heritage.
           </div>
-          <div className="flex justify-center items-center bg-[#6b1d1d] text-white p-10 text-xl ">
-            <p>
-            Hyderabad's architecture showcases the grandeur of Indo-Islamic design. The Falaknuma Palace, built in the 19th century, epitomizes luxury and royal living. The Golconda Fort, a 16th-century marvel, served as the Nizams’ stronghold, while the Mecca Masjid stands as one of the oldest mosques in India, representing architectural finesse.
-            </p>
-          </div>
-          <div className="grid grid-cols-4">
-            <img src={img16} alt="1" className="h-80 w-full" />
-            <img src={img17} alt="2" className="h-80 w-full"/>
-            <img src={img18} alt="3" className="h-80 w-full"/>
-            <img src={img18} alt="4" className="h-80 w-full" />
-          </div>
-          <div className="flex justify-center mt-10">
-          <button className="bg-[#24160f] text-[#efd1c0] flex justify-center items-center pl-10 pr-10 pt-2 pb-2 text-2xl font-bold rounded-2xl hover:bg-[#6b1d1d] hover:text-[#efd1c0] ">
-              {" "}
+          <div className="flex justify-center my-6">
+            <button className="bg-[#24160f] text-[#efd1c0] px-6 py-2 text-lg rounded-2xl font-bold hover:bg-[#6b1d1d]">
               Buy Products
             </button>
           </div>
-        </div>
+        </section>
 
-        {/* fashion attire */}
-        <div className="mt-10">
-          <h1 className='flex justify-center pt-10 text-[#24160f] text-3xl pb-5 font-bold'>Fashion Attire</h1>
-          <div className={img1}>
-            <img src={img19} alt="1"  />
+        {/* Art and Architecture */}
+        <section className="mt-10">
+          <h2 className="text-center text-2xl md:text-3xl text-[#24160f] font-bold">Art and Architecture</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-4">
+            <img src={img12} alt="12" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img13} alt="13" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img14} alt="14" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img15} alt="15" className="h-60 md:h-80 object-cover rounded-md" />
           </div>
-          <div className="flex justify-center items-center bg-[#6b1d1d] text-white p-10 text-xl">
-            <p>
-            Hyderabad's fashion reflects its royal legacy, blending tradition with elegance. Sherwanis symbolize sophistication, while the Khada Dupatta, a bridal favorite, exudes cultural grace. Pathani suits offer a stylish blend of tradition and comfort, embodying the city’s timeless sartorial heritage.
-            </p>
+          <div className="bg-[#6b1d1d] text-white p-6 mx-4 mt-4 rounded-md text-justify">
+            Hyderabad's architecture showcases the grandeur of Indo-Islamic design. The Falaknuma Palace epitomizes royal living. The Golconda Fort, a 16th-century marvel, served as the Nizams’ stronghold, while the Mecca Masjid is one of the oldest mosques in India.
           </div>
-
-          <div className="flex justify-center mt-10">
-          <button className="bg-[#24160f] text-[#efd1c0] flex justify-center items-center pl-10 pr-10 pt-2 pb-2 text-2xl font-bold rounded-2xl hover:bg-[#6b1d1d] hover:text-[#efd1c0] ">
-              {" "}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-4">
+            <img src={img16} alt="16" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img17} alt="17" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img18} alt="18" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img18} alt="18" className="h-60 md:h-80 object-cover rounded-md" />
+          </div>
+          <div className="flex justify-center my-6">
+            <button className="bg-[#24160f] text-[#efd1c0] px-6 py-2 text-lg rounded-2xl font-bold hover:bg-[#6b1d1d]">
               Buy Products
             </button>
           </div>
-        </div>
+        </section>
 
-        {/* cusine */}
-        <div className="mt-10 mb-10">
-          <h1 className='flex justify-center pt-10 text-[#24160f] text-3xl pb-5 font-bold'>Cuisine</h1>
-
-          <div className="flex justify-center items-center bg-[#6b1d1d] text-white p-10 text-xl ">
-            <p>
-            Hyderabad's culinary legacy is unparalleled, with iconic dishes like the fragrant biryani perfected during the Nizam era, hearty haleem enjoyed during Ramadan, and Qubani ka Meetha, a sweet treat with Persian roots.
-            </p>
+        {/* Fashion Attire */}
+        <section className="mt-10">
+          <h2 className="text-center text-2xl md:text-3xl text-[#24160f] font-bold">Fashion Attire</h2>
+          <div className="p-4">
+            <img src={img19} alt="19" className="w-full h-auto object-cover rounded-md" />
           </div>
-          <div className="grid grid-cols-4">
-            <img src={img20} alt="1" className="h-80 w-full" />
-            <img src={img21} alt="2" className="h-80 w-full" />
-            <img src={img22} alt="3" className="h-80 w-full" />
-            <img src={img23} alt="4" className="h-80 w-full" />
+          <div className="bg-[#6b1d1d] text-white p-6 mx-4 rounded-md text-justify">
+            Hyderabad's fashion reflects its royal legacy. Sherwanis symbolize sophistication, while the Khada Dupatta exudes cultural grace. Pathani suits offer a stylish blend of tradition and comfort.
           </div>
-
-          <div className="flex justify-center mt-10">
-            <button className="bg-[#24160f] text-[#efd1c0] flex justify-center items-center pl-10 pr-10 pt-2 pb-2 text-2xl font-bold rounded-2xl hover:bg-[#6b1d1d] hover:text-[#efd1c0] ">
-              {" "}
+          <div className="flex justify-center my-6">
+            <button className="bg-[#24160f] text-[#efd1c0] px-6 py-2 text-lg rounded-2xl font-bold hover:bg-[#6b1d1d]">
               Buy Products
             </button>
           </div>
-        </div>
+        </section>
+
+        {/* Cuisine */}
+        <section className="mt-10 mb-10">
+          <h2 className="text-center text-2xl md:text-3xl text-[#24160f] font-bold">Cuisine</h2>
+          <div className="bg-[#6b1d1d] text-white p-6 mx-4 mt-4 rounded-md text-justify">
+            Hyderabad's culinary legacy is unparalleled, with iconic dishes like the fragrant biryani, hearty haleem, and Qubani ka Meetha.
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 p-4">
+            <img src={img20} alt="20" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img21} alt="21" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img22} alt="22" className="h-60 md:h-80 object-cover rounded-md" />
+            <img src={img23} alt="23" className="h-60 md:h-80 object-cover rounded-md" />
+          </div>
+          <div className="flex justify-center mt-6">
+            <button className="bg-[#24160f] text-[#efd1c0] px-6 py-2 text-lg rounded-2xl font-bold hover:bg-[#6b1d1d]">
+              Buy Products
+            </button>
+          </div>
+        </section>
       </Layout>
     </div>
   );

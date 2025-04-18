@@ -15,15 +15,8 @@ import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Shop from "./pages/shop.jsx";
 import Orders from "./pages/ShowOrders.jsx";
-import Admin from "./admin/admin.jsx";
-import Dashboard from "./admin/pages/Dashboard.jsx";
-import Users from "./admin/pages/Users.jsx";
-import Products from "./admin/pages/Products.jsx";
-import OrdersAdmin from "./admin/pages/Orders.jsx";
-import Settings from "./admin/pages/Settings.jsx";
 
-import 'flowbite';
-
+import "flowbite";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -42,12 +35,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/orders" element={<Orders />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/users" element={<Users />} />
-        <Route path="/admin/products" element={<Products />} />
-        <Route path="/admin/orders" element={<OrdersAdmin />} />
-        <Route path="/admin/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

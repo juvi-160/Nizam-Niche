@@ -9,62 +9,79 @@ import img6 from "../assets/a101.png";
 
 const Artifacts = () => {
   return (
-    <div className='bg-[#EFD1C0]'>
+    <div className="bg-[#EFD1C0]">
       <Layout>
-        {/* main */}
+        {/* Hero Section */}
         <div>
-          <h1 className="bg-[#24160f] text-[#efd1c0] flex justify-center p-2 text-2xl">
+          <h1 className="bg-[#24160f] text-[#efd1c0] text-center font-bold p-3 text-xl md:text-2xl">
             Where heritage meets artistry in every piece
           </h1>
-          <div style={{ backgroundImage: `url(${img6})` }} className=" flex justify-center p-2 text-xl h-160">
-            <h1 className="flex justify-center items-center text-[#efd1c0] font-bold text-4xl">
-              Preserve the past, adorn your present with timeless hyderabadi craftsmanship
+          <div
+            style={{ backgroundImage: `url(${img6})` }}
+            className="flex justify-center items-center h-[300px] md:h-160 bg-cover bg-center p-4"
+          >
+            <h1 className="text-[#efd1c0] font-bold text-2xl md:text-4xl text-center px-4 shadow-2xl">
+              Preserve the past, adorn your present with timeless Hyderabadi craftsmanship
             </h1>
           </div>
         </div>
 
-        {/* figures */}
+        {/* Sculptures */}
         <div>
-          <h1 className="flex justify-center pt-10 text-[#24160f] text-2xl font-bold">SCULPTURES AND MINIATURES</h1>
-          <div className="grid grid-cols-2  gap-4 pr-30 pl-30 pt-5 mr-15 ml-15 justify-center items-center">
-            <img src={img1} alt="1" className="w-full h-80"/>
-            <img src={img2} alt="2" className="w-full h-80"/>
+          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
+            SCULPTURES AND MINIATURES
+          </h1>
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-5 m-5 pr-10 pl-10 ">
+            <img src={img1} alt="1" className="w-full h-60 object-cover rounded-md" />
+            <img src={img2} alt="2" className="w-full h-60 object-cover rounded-md" />
           </div>
-          <div className="flex justify-center pr-10 pt-10 pl-10 pb-10 mr-10 ml-10 mb-10 text-[#24160f] text-2xl">
-            <p> Hyderabadi sculptures and miniatures are a celebration of the city’s architectural and cultural grandeur. From finely crafted brass figurines to detailed replicas of iconic landmarks like Charminar  each piece reflects the artistry and heritage of Hyderabad, making them perfect decor for any space.</p>
+          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
+            Hyderabadi sculptures and miniatures are a celebration of the city’s architectural and cultural grandeur. From finely crafted brass figurines to detailed replicas of iconic landmarks like Charminar, each piece reflects the artistry and heritage of Hyderabad.
+          </p>
+          <div className="flex justify-center items-center mb-10">
+          <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP ACCESSORIES NOW!</button>
           </div>
         </div>
 
-        {/* bidiriware */}
+        {/* Bidriware */}
         <div>
-          <h1 className="flex justify-center pt-10 text-[#24160f] text-2xl font-bold">BIDRIWARE</h1>
-          <div className="p-5 mr-15 ml-15">
-            <img src={img3} alt="1" className="w-full h-80" />
+          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">BIDRIWARE</h1>
+          <div className="p-5 m-5 pr-10 pl-10">
+            <img src={img3} alt="1" className="w-full h-75 object-cover rounded-md " />
           </div>
-          <div className="flex justify-center pr-10 pt-5 pl-10 pb-10 mr-10 ml-10 mb-10 text-[#24160f] text-2xl">
-            <p> Bidriware, a hallmark of Hyderabadi artistry, features stunning silver inlay on dark metal. From vases to trays, each handcrafted piece is a masterpiece of elegance and tradition, rooted in the Deccan’s rich heritage.</p>
+          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
+            Bidriware, a hallmark of Hyderabadi artistry, features stunning silver inlay on dark metal. From vases to trays, each handcrafted piece is a masterpiece of elegance and tradition.
+          </p>
+          <div className="flex justify-center items-center mb-10">
+          <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP ACCESSORIES NOW!</button>
           </div>
         </div>
 
-        {/* islamic art */}
+        {/* Islamic Art */}
         <div>
-          <h1 className="flex justify-center pt-10 text-[#24160f] text-2xl font-bold">ISLAMIC ART</h1>
-          <div className="p-5 mr-15 ml-15">
-            <img src={img4} alt="1" className="w-full h-80" />
+          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">ISLAMIC ART</h1>
+          <div className="p-5 m-5 pr-10 pl-10">
+            <img src={img4} alt="1" className="w-full h-75 object-cover rounded-md" />
           </div>
-          <div className="flex justify-center pr-10 pt-5 pl-10 pb-10 mr-10 ml-10 mb-10 text-[#24160f] text-2xl">
-            <p> Hyderabadi Islamic wall art beautifully blends spiritual grace with artistic mastery, showcasing intricate Arabic calligraphy and geometric patterns. These pieces serve as timeless decor, embodying the essence of faith and culture</p>
+          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
+            Hyderabadi Islamic wall art beautifully blends spiritual grace with artistic mastery, showcasing intricate Arabic calligraphy and geometric patterns.
+          </p>
+          <div className="flex justify-center items-center mb-10">
+          <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP ACCESSORIES NOW!</button>
           </div>
         </div>
 
-        {/* paintings */}
+        {/* Paintings */}
         <div>
-          <h1 className="flex justify-center pt-10 text-[#24160f] text-2xl font-bold">PAINTINGS</h1>
-          <div className="pr-10 pl-10 m-10">
-            <img src={img5} alt="1" className="w-full h-80" />
+          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">PAINTINGS</h1>
+          <div className="px-5 py-5 p-5 m-5 pr-10 pl-10">
+            <img src={img5} alt="1" className="w-full h-75 object-cover rounded-md" />
           </div>
-          <div className="flex justify-center pr-10 pl-10 pb-10 mr-10 ml-10 mb-10 text-[#24160f] text-2xl">
-            <p> Hyderabadi paintings, including Nirmal art, bring to life the grandeur of royal courts and the beauty of Deccan landscapes. Each stroke reflects the vibrant history and artistic flair of the region</p>
+          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
+            Hyderabadi paintings, including Nirmal art, bring to life the grandeur of royal courts and the beauty of Deccan landscapes. Each stroke reflects the vibrant history and artistic flair of the region.
+          </p>
+          <div className="flex justify-center items-center mb-10">
+          <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP ACCESSORIES NOW!</button>
           </div>
         </div>
       </Layout>
