@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { createContext } from 'react';
+import {products} from '../assets/products.js';
+
+export const ShopContext = createContext();
 
 
 
-const ShopContext = (props) => {
+const ShopContextProvider = (props) => {
     const currency = '₹';
     const delivery_fee = 10;
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -62,9 +66,19 @@ const ShopContext = (props) => {
         }
     }
 
+
+
+    const value ={
+        products, currency, delivery_fee, backendUrl,
+
+
+    }
+
   return (
-    <div>ShopContext</div>
+    <ShopContext.Provider value={value}>
+        {props.children}
+    </ShopContext.Provider>
   )
 }
 
-export default ShopContext
+export default ShopContextProvider;

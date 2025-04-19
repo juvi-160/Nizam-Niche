@@ -11,19 +11,26 @@ import img6 from "./assets/1.6.png";
 import img7 from "./assets/1.7.png";
 import "flowbite";
 import { Link } from "react-router";
+import TopCollections from "./components/TopCollections.jsx";
+import { Flower2, PackageCheck, Wallet, Truck } from "lucide-react";
+import img8 from "./assets/us1.png"
+import img9 from "./assets/us2.png"
+import img10 from "./assets/us3.png"
+import img11 from "./assets/us4.png"
 
 function App() {
   return (
     <div className="bg-[#EFD1C0]">
       <Layout>
         <Carosel />
+       
 
         {/* Category Section */}
         <section className="category bg-[#EFD1C0] px-4 sm:px-6 md:px-10 py-6">
           <h1 className="text-[#6b1d1d] text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6">
             SHOP YOUR ROYAL COLLECTION
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
               to="/women"
               className="flex flex-col items-center text-center font-bold text-lg sm:text-xl text-[#6b1d1d] space-y-2 hover:scale-105 transition-transform"
@@ -73,7 +80,7 @@ function App() {
 
         {/* Horizontal Promo Images */}
         <section className="image mt-10">
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="grid grid-cols-2 md:grid-cols-2">
             <img
               src={img5}
               alt="women"
@@ -84,37 +91,63 @@ function App() {
               alt="men"
               className="w-full h-64 md:h-96 object-cover"
             />
+            
           </div>
         </section>
 
         {/* Top Collections */}
-        <section className="pt-10 px-4 md:px-10">
-          <h1 className="text-[#6b1d1d] text-2xl md:text-3xl font-bold text-center mb-6">
-            TOP COLLECTIONS
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
-        </section>
+        <TopCollections/>
 
         {/* About Us */}
-        <section
-          style={{ backgroundImage: `url(${img7})` }}
-          className="h-auto md:h-96 mt-10 bg-cover bg-center bg-no-repeat"
-        >
-          <div className="bg-[#6b1d1d] bg-opacity-90 h-full flex flex-col items-center justify-center p-6 text-center">
-            <h1 className="text-2xl md:text-3xl font-bold text-[#efd1c0] mb-2">
-              ABOUT US
-            </h1>
-            <p className="text-lg md:text-xl text-[#efd1c0] mb-4">
-              Our story begins with a passion for the art of craftsmanship.
-            </p>
-            <button className="bg-[#24160f] text-white px-6 py-2 text-sm rounded-lg hover:bg-[#efd1c0] hover:text-[#24160f] transition">
-              EXPLORE NOW
-            </button>
+        {/* Our Values */}
+        <section className="bg-[#6b1d1d] text-[#efd1c0] py-12 px-6 md:px-16">
+          <h2 className="text-xl md:text-2xl font-semibold text-center mb-4">
+            At The Nizam's Niche, we collaborate with local artisans to revive
+            traditional crafts and empower small-scale businesses.
+          </h2>
+
+          <div className="flex md:flex-row justify-center items-center gap-2 my-6">
+            <img
+              src={img8}
+              alt="value1"
+              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+            />
+            <img
+              src={img9}
+              alt="value2"
+              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+            />
+            <img
+              src={img10}
+              alt="value2"
+              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+            />
+            <img
+              src={img11}
+              alt="value2"
+              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+            />
+            
+          </div>
+
+          {/* Icons */}
+          <div className="grid grid-cols-4 md:grid-cols-4 gap-6 text-center mt-8 text-[#efd1c0]">
+            <div className="flex flex-col items-center">
+              <PackageCheck size={40} />
+              <p className=" mt-2 font-semibold">Guaranteed Quality</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Flower2 size={40} />
+              <p className="mt-2 font-semibold">Sustainability</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Wallet size={40} />
+              <p className="mt-2 font-semibold">Affordable Prices</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Truck size={40} />
+              <p className="mt-2 font-semibold">Fast Delivery</p>
+            </div>
           </div>
         </section>
 
@@ -123,7 +156,7 @@ function App() {
           <h1 className="text-[#6b1d1d] text-2xl md:text-3xl font-bold text-center mb-6">
             REVIEWS FROM OUR LOYAL CUSTOMERS
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}

@@ -143,19 +143,40 @@ const Header = () => {
         </nav>
 
         {/* Icons */}
-        <div className="hidden md:flex gap-4 items-center text-[#6B1D1D] text-xl">
+        {/* Icons */}
+        <div className="hidden md:flex gap-4 items-center text-[#6B1D1D] text-xl relative">
           <Link to="/search" className="hover:text-[#24160f]">
             <i className="fa-solid fa-magnifying-glass"></i>
           </Link>
-          <Link to="/login" className="hover:text-[#24160f]">
-            <i className="fa-regular fa-user"></i>
-          </Link>
+
+          {/* User Dropdown */}
+          <div className="relative group">
+            <Link to="/login" className="hover:text-[#24160f]">
+              <i className="fa-regular fa-user"></i>
+            </Link>
+            {/* Dropdown Menu on Hover */}
+            <div className="absolute right-0 hidden group-hover:flex flex-col gap-2 w-36 py-3 px-5 bg-[#6b1d1d] text-[#efd1c0] rounded shadow-lg mt-2 z-50">
+              <Link to="/profile" className="cursor-pointer hover:text-white">
+                My Profile
+              </Link>
+              <Link to="/orders" className="cursor-pointer hover:text-white">
+                Orders
+              </Link>
+              <button className="cursor-pointer hover:text-white text-left">
+                Logout
+              </button>
+            </div>
+          </div>
+
           <Link to="/wishlist" className="hover:text-[#24160f]">
             <i className="fa-regular fa-heart"></i>
           </Link>
-          <Link to="/cart" className="hover:text-[#24160f]">
-            <i className="fa-solid fa-cart-shopping"></i>
-          </Link>
+          <Link to="/cart" className="hover:text-[#24160f] relative">
+  <i className="fa-solid fa-cart-shopping"></i>
+  <p className="absolute right-[-8px] bottom-[-8px] w-4 h-4 flex items-center justify-center bg-[#6b1d1d] text-white rounded-full text-[8px]">
+    10
+  </p>
+</Link>
         </div>
       </div>
     </header>
