@@ -3,7 +3,6 @@ import Layout from "../components/Layout";
 import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext";
 import { Star, Heart, HeartOff } from "lucide-react";
-import TopCollections from "../components/TopCollections";
 import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
