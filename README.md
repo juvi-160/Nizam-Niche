@@ -2,6 +2,9 @@
 
 Nizam Niche is a modern eCommerce platform crafted to celebrate and promote the rich and royal heritage of Hyderabadi culture. From traditional outfits to rare books and timeless artifacts, this store brings the Nizam-era charm to the digital world.
 
+![image](https://github.com/user-attachments/assets/8d6559e8-3ca5-4df7-9fdf-faef37e85ac5)
+
+
 🛍️ About the Project
 
 Whether you're passionate about ethnic fashion or looking to own a piece of Deccan history, Nizam Niche offers a curated shopping experience rooted in tradition, style, and culture. The platform includes product categories for both men and women, Hyderabadi literature, and cultural decor items.
