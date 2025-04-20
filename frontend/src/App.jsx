@@ -18,11 +18,13 @@ import img9 from "./assets/us2.png"
 import img10 from "./assets/us3.png"
 import img11 from "./assets/us4.png"
 
+
 function App() {
   return (
     <div className="bg-[#EFD1C0]">
       <Layout>
         <Carosel />
+        
        
 
         {/* Category Section */}

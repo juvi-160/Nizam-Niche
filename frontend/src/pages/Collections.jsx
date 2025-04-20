@@ -3,9 +3,11 @@ import Layout from "../components/Layout";
 import { ShopContext } from "../context/ShopContext";
 import { ChevronDown } from "lucide-react";
 import ProductItem from "../components/ProductItem";
+import { useLocation } from "react-router-dom";
+
 
 const Collections = () => {
-  const { products } = useContext(ShopContext);
+  const { products, search, setSearch, showSearch, setShowSearch  } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -13,6 +15,7 @@ const Collections = () => {
   const [genre, setGenre] = useState([]);
   const [artifacts, setArtifacts] = useState([]);
   const [sortBy, setSortBy] = useState("relevant");
+  const location = useLocation();
 
 
   const toggleCategory = (e) => {
@@ -60,21 +63,28 @@ const Collections = () => {
       );
     }
 
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter(
+        (item) =>
+          item.title && item.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
     if (subCategory.length > 0) {
       productsCopy = productsCopy.filter((item) =>
-        subCategory.includes(item.subCategory) // make sure `item.subCategory` exists
+        item.subCategory && subCategory.includes(item.subCategory) // make sure `item.subCategory` exists
       );
     }
 
     if (genre.length > 0) {
       productsCopy = productsCopy.filter((item) =>
-        genre.includes(item.genre) // make sure `item.genre` exists
+        item.genre && genre.includes(item.genre) // make sure `item.genre` exists
       );
     }
 
     if (artifacts.length > 0) {
       productsCopy = productsCopy.filter((item) =>
-        artifacts.includes(item.artifacts) // make sure `item.artifacts` exists
+        item.artifacts && artifacts.includes(item.artifacts) // make sure `item.artifacts` exists
       );
     }
 
@@ -89,15 +99,23 @@ const Collections = () => {
     setFilterProducts(productsCopy);
   };
 
-  // Initialize filtered products when products load
-  // useEffect(() => {
-  //   setFilterProducts(products);
-  // }, [products]);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const searchParam = searchParams.get("search");
+  
+    if (searchParam) {
+      setSearch(searchParam); // assuming setSearch is from context
+      setShowSearch(true);    // assuming setShowSearch is from context
+    }
+  }, [location.search]);
+  
+  
+
 
   // Apply filter when category or subCategory changes
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory, genre, sortBy, artifacts]);
+  }, [category, subCategory, genre, sortBy, artifacts,search,showSearch]);
 
   return (
     <div className="bg-[#efd1c0] min-h-screen">
