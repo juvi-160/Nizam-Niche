@@ -13,19 +13,16 @@ import "flowbite";
 import { Link } from "react-router";
 import TopCollections from "./components/TopCollections.jsx";
 import { Flower2, PackageCheck, Wallet, Truck } from "lucide-react";
-import img8 from "./assets/us1.png"
-import img9 from "./assets/us2.png"
-import img10 from "./assets/us3.png"
-import img11 from "./assets/us4.png"
-
+import img8 from "./assets/us1.png";
+import img9 from "./assets/us2.png";
+import img10 from "./assets/us3.png";
+import img11 from "./assets/us4.png";
 
 function App() {
   return (
     <div className="bg-[#EFD1C0]">
       <Layout>
         <Carosel />
-        
-       
 
         {/* Category Section */}
         <section className="category bg-[#EFD1C0] px-4 sm:px-6 md:px-10 py-6">
@@ -93,62 +90,70 @@ function App() {
               alt="men"
               className="w-full h-64 md:h-96 object-cover"
             />
-            
           </div>
         </section>
 
         {/* Top Collections */}
-        <TopCollections/>
+        <TopCollections />
 
         {/* About Us */}
         {/* Our Values */}
-        <section className="bg-[#6b1d1d] text-[#efd1c0] py-12 px-6 md:px-16">
-          <h2 className="text-xl md:text-2xl font-semibold text-center mb-4">
+        {/* Our Values */}
+        <section className="bg-[#6b1d1d] text-[#efd1c0] py-12 px-4 sm:px-6 md:px-16">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-center mb-6 px-2">
             At The Nizam's Niche, we collaborate with local artisans to revive
             traditional crafts and empower small-scale businesses.
           </h2>
 
-          <div className="flex md:flex-row justify-center items-center gap-2 my-6">
+          {/* Responsive image grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 place-items-center my-6">
             <img
               src={img8}
               alt="value1"
-              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+              className="w-full max-w-[160px] h-auto object-cover rounded-xl shadow-lg"
             />
             <img
               src={img9}
               alt="value2"
-              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+              className="w-full max-w-[160px] h-auto object-cover rounded-xl shadow-lg"
             />
             <img
               src={img10}
-              alt="value2"
-              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+              alt="value3"
+              className="w-full max-w-[160px] h-auto object-cover rounded-xl shadow-lg"
             />
             <img
               src={img11}
-              alt="value2"
-              className="w-55 h-55 object-cover rounded-xl shadow-lg"
+              alt="value4"
+              className="w-full max-w-[160px] h-auto object-cover rounded-xl shadow-lg"
             />
-            
           </div>
 
-          {/* Icons */}
-          <div className="grid grid-cols-4 md:grid-cols-4 gap-6 text-center mt-8 text-[#efd1c0]">
+          {/* Icons section */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center mt-10">
             <div className="flex flex-col items-center">
               <PackageCheck size={40} />
-              <p className=" mt-2 font-semibold">Guaranteed Quality</p>
+              <p className="mt-2 font-semibold text-sm sm:text-base">
+                Guaranteed Quality
+              </p>
             </div>
             <div className="flex flex-col items-center">
               <Flower2 size={40} />
-              <p className="mt-2 font-semibold">Sustainability</p>
+              <p className="mt-2 font-semibold text-sm sm:text-base">
+                Sustainability
+              </p>
             </div>
             <div className="flex flex-col items-center">
               <Wallet size={40} />
-              <p className="mt-2 font-semibold">Affordable Prices</p>
+              <p className="mt-2 font-semibold text-sm sm:text-base">
+                Affordable Prices
+              </p>
             </div>
             <div className="flex flex-col items-center">
               <Truck size={40} />
-              <p className="mt-2 font-semibold">Fast Delivery</p>
+              <p className="mt-2 font-semibold text-sm sm:text-base">
+                Fast Delivery
+              </p>
             </div>
           </div>
         </section>

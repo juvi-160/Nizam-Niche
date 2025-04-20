@@ -292,7 +292,7 @@ export const products = [
       },
       {
         "id": 20,
-        "title": "History of teh Deccan",
+        "title": "History of the Deccan",
         "price": 682,
         "description": "The Deccan lies in South India, bound by the Godavari and Vindhya mountains to the north and the Krishna and Tungabhadra rivers to the south. It had no authentic historical records, except a few inscriptions and architectural remains, till the end of the thirteenth century, when the Delhi sultans made their presence felt. A Mughal kingdom was eventually established in the Deccan, it would last for more than three hundred years, a fascinating period of valour and romance. This book connects the various histories of the Deccan, combining scattered references with the author's own research. The two volumes of History of the Deccan are an in-depth look at the opulence of the Mughal kingdom and how it slowly gave way to the political fortunes of the French and the Britishandthe creation of the Hyderabad contingent. Anecdotal and supplemented by delightful sketches and photographs, this book is an interesting as well as informative read.",
         "images": ["https://res.cloudinary.com/dgyiqsqsr/image/upload/v1734019750/folder/Books/History/cqtke2isngxysfuilopd.png",
