@@ -7,7 +7,7 @@ import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [wishlist, setWishlist] = useState(false);
@@ -162,7 +162,10 @@ const Product = () => {
               </div>
 
               {/* Add to Cart */}
-              <button className="mt-6 w-full sm:w-auto px-6 py-2 bg-[#24160f] text-white rounded-full hover:bg-[#3b2515] transition duration-300">
+              <button
+                onClick={() => addToCart(productData.id, selectedSize)}
+                className="mt-6 w-full sm:w-auto px-6 py-2 bg-[#24160f] text-white rounded-full hover:bg-[#3b2515] transition duration-300"
+              >
                 ADD TO CART
               </button>
 
@@ -180,7 +183,9 @@ const Product = () => {
         <div className="mt-20 p-10">
           <div className="flex">
             <b className="border px-5 py-3 text-sm">Description</b>
-            <p className="border px-5 py-3 text-sm">Reviews: {productData.rating}</p>
+            <p className="border px-5 py-3 text-sm">
+              Reviews: {productData.rating}
+            </p>
           </div>
           <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-[#6b1d1d] font-semibold">
             <p>{productData.description}</p>
@@ -194,7 +199,6 @@ const Product = () => {
           genre={productData.genre}
           artifactsCategory={productData.artifactCategory}
         />
-
       </Layout>
     </div>
   );

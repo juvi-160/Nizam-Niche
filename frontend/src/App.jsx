@@ -17,12 +17,15 @@ import img8 from "./assets/us1.png";
 import img9 from "./assets/us2.png";
 import img10 from "./assets/us3.png";
 import img11 from "./assets/us4.png";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="bg-[#EFD1C0]">
       <Layout>
         <Carosel />
+        <ToastContainer />
 
         {/* Category Section */}
         <section className="category bg-[#EFD1C0] px-4 sm:px-6 md:px-10 py-6">
