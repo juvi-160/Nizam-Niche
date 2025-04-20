@@ -1,16 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Layout from '../components/Layout';
-import { useParams } from 'react-router';
-import { ShopContext } from '../context/ShopContext';
-import { Star, Heart, HeartOff } from 'lucide-react';
-import TopCollections from '../components/TopCollections';
+import React, { useContext, useEffect, useState } from "react";
+import Layout from "../components/Layout";
+import { useParams } from "react-router";
+import { ShopContext } from "../context/ShopContext";
+import { Star, Heart, HeartOff } from "lucide-react";
+import TopCollections from "../components/TopCollections";
+import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
   const { products, currency } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [wishlist, setWishlist] = useState(false);
+  const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
     if (products.length > 0) {
@@ -41,12 +43,10 @@ const Product = () => {
   return (
     <div className="bg-[#efd1c0] min-h-screen">
       <Layout>
-        {/* Product Details */}
         <div className="border-t-2 pt-8 px-4 sm:px-6 md:px-12 transition-opacity ease-in duration-500 opacity-100">
           <div className="flex flex-col lg:flex-row gap-10">
-            {/* Product Images */}
+            {/* Images */}
             <div className="flex flex-col-reverse gap-4 lg:flex-row lg:flex-[1.2]">
-              {/* Thumbnails */}
               <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto">
                 {productData.images?.map((img, index) => (
                   <img
@@ -58,7 +58,6 @@ const Product = () => {
                   />
                 ))}
               </div>
-              {/* Main Image */}
               <div className="w-full flex justify-center lg:w-[80%]">
                 <img
                   src={image}
@@ -68,10 +67,12 @@ const Product = () => {
               </div>
             </div>
 
-            {/* Product Info */}
+            {/* Info */}
             <div className="flex-1 text-[#24160f]">
               <div className="flex justify-between items-start">
-                <h1 className="text-2xl sm:text-3xl font-bold">{productData.title}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold">
+                  {productData.title}
+                </h1>
                 <button onClick={() => setWishlist(!wishlist)}>
                   {wishlist ? (
                     <Heart className="text-red-500" fill="red" />
@@ -95,31 +96,67 @@ const Product = () => {
                 {productData.price}
               </p>
 
-              {/* Description */}
-              <p className="mt-4 text-base leading-relaxed">{productData.description}</p>
-
               {/* Extra Info */}
               <div className="mt-6 space-y-2 text-sm text-[#463730]">
-                <p><strong>Category:</strong> {productData.category || "General"}</p>
-                <p><strong>Subcategory:</strong> {productData.subCategory || "N/A"}</p>
-                <p><strong>Material:</strong> {productData.material || "N/A"}</p>
+                <p>
+                  <strong>Category:</strong> {productData.category || "General"}
+                </p>
+                <p>
+                  <strong>Subcategory:</strong>{" "}
+                  {productData.subCategory || "N/A"}
+                </p>
+                <p>
+                  <strong>Material:</strong> {productData.material || "N/A"}
+                </p>
 
                 {productData.category === "Books" && (
                   <>
-                    <p><strong>Author:</strong> {productData.author || "Not mentioned"}</p>
-                    <p><strong>Genre:</strong> {productData.genre || "Not mentioned"}</p>
+                    <p>
+                      <strong>Author:</strong>{" "}
+                      {productData.author || "Not mentioned"}
+                    </p>
+                    <p>
+                      <strong>Genre:</strong>{" "}
+                      {productData.genre || "Not mentioned"}
+                    </p>
                   </>
                 )}
 
                 {productData.category === "Artifacts" && (
-                  <p><strong>Artifact Type:</strong> {productData.artifactCategory || "Not mentioned"}</p>
+                  <p>
+                    <strong>Artifact Type:</strong>{" "}
+                    {productData.artifactCategory || "Not mentioned"}
+                  </p>
                 )}
 
-                {(productData.category === "Women" || productData.category === "Men") && (
+                {(productData.category === "Women" ||
+                  productData.category === "Men") && (
                   <>
-                    <p><strong>Designer:</strong> {productData.designer || "Not mentioned"}</p>
+                    <p>
+                      <strong>Designer:</strong>{" "}
+                      {productData.designer || "Not mentioned"}
+                    </p>
                     {isClothingOrShoes && productData.sizes?.length > 0 && (
-                      <p><strong>Available Sizes:</strong> {productData.sizes.join(', ')}</p>
+                      <>
+                        <p>
+                          <strong>Select Size:</strong>
+                        </p>
+                        <div className="flex flex-wrap gap-2 my-4">
+                          {productData.sizes.map((size, index) => (
+                            <button
+                              onClick={() => setSelectedSize(size)}
+                              key={index}
+                              className={`px-4 py-1 border border-[#24160f] text-[#24160f] rounded-full hover:bg-[#24160f] hover:text-white transition duration-300 ${
+                                selectedSize === size
+                                  ? "border-2 border-orange-700"
+                                  : ""
+                              }`}
+                            >
+                              {size}
+                            </button>
+                          ))}
+                        </div>
+                      </>
                     )}
                   </>
                 )}
@@ -127,16 +164,38 @@ const Product = () => {
 
               {/* Add to Cart */}
               <button className="mt-6 w-full sm:w-auto px-6 py-2 bg-[#24160f] text-white rounded-full hover:bg-[#3b2515] transition duration-300">
-                Add to Cart
+                ADD TO CART
               </button>
+
+              <hr className="mt-8 sm:w-4/5" />
+              <div className="text-sm text-[#6b1d1d] mt-5 flex flex-col gap-1">
+                <p>100% Original Product</p>
+                <p>Cash On Delivery is available on this Product</p>
+                <p>Easy return and exchange policy within 7 days</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Top Collection */}
-        <div className="p-4 sm:p-8">
-          <TopCollections />
+        {/* Description & Reviews */}
+        <div className="mt-20 p-10">
+          <div className="flex">
+            <b className="border px-5 py-3 text-sm">Description</b>
+            <p className="border px-5 py-3 text-sm">Reviews: {productData.rating}</p>
+          </div>
+          <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-[#6b1d1d] font-semibold">
+            <p>{productData.description}</p>
+          </div>
         </div>
+
+        {/* Related Products */}
+        <RelatedProducts
+          category={productData.category}
+          subCategory={productData.subCategory}
+          genre={productData.genre}
+          artifactsCategory={productData.artifactCategory}
+        />
+
       </Layout>
     </div>
   );
