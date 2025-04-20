@@ -11,7 +11,7 @@ export const products = [
         "rating": 3.8,
         "material": "Paperback",
         "author": "Malvika Singh",
-        "genre": "Fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
        {
         "id": 2,
@@ -27,7 +27,7 @@ export const products = [
         "rating": 4.4,
         "material": "Hardcover",
         "author": "Indu Sundaresan",
-        "genre": "fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
        {
         "id": 3,
@@ -43,7 +43,7 @@ export const products = [
         "rating": 4.2,
         "material": "Hardcover",
         "author": "Thrity Umrigar",
-        "genre": "fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
        {
         "id": 4,
@@ -59,7 +59,7 @@ export const products = [
         "rating": 4.1,
         "material": "Hardcover",
         "author": "RK Narayan",
-        "genre": "fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
       {
         "id": 5,
@@ -75,7 +75,7 @@ export const products = [
         "rating": 4.1,
         "material": "Hardcover",
         "author": "Dr N.K Sharma",
-        "genre": "fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
       {
         "id": 6,
@@ -90,7 +90,7 @@ export const products = [
         "rating": 4.3,
         "material": "Hardcover",
         "author": "Kousar J.Azam",
-        "genre": "fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
       {
         "id": 7,
@@ -105,7 +105,7 @@ export const products = [
         "rating": 4.3,
         "material": "Hardcover",
         "author": "Paul E.Losensky,Sunil Sharma",
-        "genre": "fiction and poetry"
+        "genre": "Fiction & Poetry"
       },
       {
         "id": 8,
