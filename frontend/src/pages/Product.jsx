@@ -4,10 +4,14 @@ import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext";
 import { Star, Heart, HeartOff } from "lucide-react";
 import RelatedProducts from "../components/RelatedProducts";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart, addToWishlist } =
+    useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [wishlist, setWishlist] = useState(false);
@@ -25,6 +29,34 @@ const Product = () => {
     }
   }, [productId, products]);
 
+  const isClothingOrShoes =
+    productData?.subCategory?.includes("Clothing") ||
+    productData?.subCategory?.includes("Shoes");
+
+  const handleAddToCart = () => {
+    if (isClothingOrShoes && !selectedSize) {
+      toast.error("Please select a size before adding to cart.");
+      return;
+    }
+    const sizeToSend = isClothingOrShoes ? selectedSize : null;
+    addToCart(productData.id, sizeToSend);
+  };
+
+  const handleAddToWishlist = () => {
+    if (isClothingOrShoes && !selectedSize) {
+      toast.error("Please select a size before adding to wishlist.");
+      return;
+    }
+    const sizeToSend = isClothingOrShoes ? selectedSize : null;
+    if (wishlist) {
+      // Optional: removeFromWishlist(productData.id);
+      setWishlist(false);
+    } else {
+      addToWishlist(productData.id, sizeToSend);
+      setWishlist(true);
+    }
+  };
+
   if (!productData) {
     return (
       <div className="bg-[#efd1c0] min-h-screen">
@@ -35,13 +67,10 @@ const Product = () => {
     );
   }
 
-  const isClothingOrShoes =
-    productData.subCategory?.includes("Clothing") ||
-    productData.subCategory?.includes("Shoes");
-
   return (
     <div className="bg-[#efd1c0] min-h-screen">
       <Layout>
+        <ToastContainer />
         <div className="border-t-2 pt-8 px-4 sm:px-6 md:px-12 transition-opacity ease-in duration-500 opacity-100">
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Images */}
@@ -72,7 +101,7 @@ const Product = () => {
                 <h1 className="text-2xl sm:text-3xl font-bold">
                   {productData.title}
                 </h1>
-                <button onClick={() => setWishlist(!wishlist)}>
+                <button onClick={handleAddToWishlist}>
                   {wishlist ? (
                     <Heart className="text-red-500" fill="red" />
                   ) : (
@@ -163,7 +192,7 @@ const Product = () => {
 
               {/* Add to Cart */}
               <button
-                onClick={() => addToCart(productData.id, selectedSize)}
+                onClick={handleAddToCart}
                 className="mt-6 w-full sm:w-auto px-6 py-2 bg-[#24160f] text-white rounded-full hover:bg-[#3b2515] transition duration-300"
               >
                 ADD TO CART

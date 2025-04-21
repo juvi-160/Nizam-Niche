@@ -7,7 +7,7 @@ import { ShopContext } from "../context/ShopContext";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const { setShowSearch } = useContext(ShopContext);
+  const { getCartCount } = useContext(ShopContext);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleShop = () => setIsShopOpen(!isShopOpen);
@@ -133,7 +133,7 @@ const Header = () => {
           <Link to="/cart" className="hover:text-[#24160f] relative">
             <i className="fa-solid fa-cart-shopping"></i>
             <p className="absolute right-[-8px] bottom-[-8px] w-4 h-4 flex items-center justify-center bg-[#6b1d1d] text-white rounded-full text-[8px]">
-              10
+              {getCartCount()}
             </p>
           </Link>
         </div>
