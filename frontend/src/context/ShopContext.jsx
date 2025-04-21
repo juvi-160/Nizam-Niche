@@ -17,15 +17,11 @@ const ShopContextProvider = (props) => {
 
   const addToCart = (productId, size) => {
     const key = size ? `${productId}_${size}` : `${productId}`;
-
     setCartItems((prev) => {
       const updatedCart = {
         ...prev,
         [key]: (prev[key] || 0) + 1,
       };
-
-      console.log("Updated Cart Items:", updatedCart);
-      toast.success("added to cart");
       return updatedCart;
     });
   };

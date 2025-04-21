@@ -14,13 +14,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+
 const Dashboard = () => {
-  // Dummy Stats (replace with fetched backend data)
-  const stats = {
-    users: 120,
-    products: 80,
-    orders: 150,
-  };
+
+  
+  
 
   const pieData = [
     { name: "Users", value: stats.users },
@@ -36,11 +34,7 @@ const Dashboard = () => {
     { name: "Orders", count: stats.orders },
   ];
 
-  const recentOrders = [
-    { id: 1, customer: "Alice", status: "Delivered", amount: "$100" },
-    { id: 2, customer: "Bob", status: "Pending", amount: "$60" },
-    { id: 3, customer: "Charlie", status: "Shipped", amount: "$80" },
-  ];
+  
 
   return (
     <div className="min-h-screen bg-gray-100">
