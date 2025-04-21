@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 
 const Cart = () => {
-  const { products, currency, cartItems, addToWishlist, setCartItems } = useContext(ShopContext);
+  const { products, currency, cartItems, addToWishlist, setCartItems , updateQuantity } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -119,7 +119,7 @@ const Cart = () => {
                       <button onClick={() => moveToWishlist(item.id, item.size)} className='px-3 py-2 bg-[#efd1c0] text-[#6b1d1d] border border-[#6b1d1d] rounded-full hover:bg-[#6b1d1d] hover:text-[#efd1c0]'>
                         ❤️ Wishlist
                       </button>
-                      <button onClick={() => removeFromCart(item.id, item.size)} className='px-3 py-2 bg-red-100 text-red-700 border border-red-400 rounded-full hover:bg-red-700 hover:text-white'>
+                      <button onClick={() => updateQuantity(item.id, item.size)} className='px-3 py-2 bg-red-100 text-red-700 border border-red-400 rounded-full hover:bg-red-700 hover:text-white'>
                         🗑 Remove
                       </button>
                     </div>

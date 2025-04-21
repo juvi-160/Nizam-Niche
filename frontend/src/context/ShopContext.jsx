@@ -42,6 +42,15 @@ const ShopContextProvider = (props) => {
     }
     return totalCount;
   };
+
+  const updateQuantity = async(itemId,size,quantity) => {
+    let cartData = structuredClone(cartItems);
+
+    cartData[itemId][size] = quantity;
+
+    setCartItems(cartData);
+
+  }
   
 
   const getCartAmount = () => {
@@ -55,6 +64,8 @@ const ShopContextProvider = (props) => {
     }
     return totalAmount;
   };
+
+
   
 
   useEffect(() => {
@@ -78,6 +89,7 @@ const ShopContextProvider = (props) => {
     wishlistItems,
     setWishlistItems,
     addToWishlist,
+    updateQuantity,
   };
 
   return (
