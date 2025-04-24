@@ -34,18 +34,24 @@ const ShopContextProvider = (props) => {
   };
 
   const getCartCount = () => {
-    return Object.values(cartItems).reduce((acc, val) => acc + val, 0);
+    return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
   };
 
   const getWishCount = () => {
     return Object.values(wishlistItems).reduce((acc, val) => acc + val, 0);
   };
 
-  const updateQuantity = (itemId, quantity) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: quantity,
-    }));
+  const updateQuantity = (id, size, quantity) => {
+    const key = `${id}_${size}`;
+    setCartItems(prev => {
+      const updated = { ...prev };
+      if (quantity === 0) {
+        delete updated[key];
+      } else {
+        updated[key] = quantity;
+      }
+      return updated;
+    });
   };
 
   const updateWishQuantity = (itemId, quantity = 0) => {
@@ -95,6 +101,7 @@ const ShopContextProvider = (props) => {
     updateWishQuantity,
     getWishCount,
     setWishlistItems,
+    updateQuantity
   };
 
   return (

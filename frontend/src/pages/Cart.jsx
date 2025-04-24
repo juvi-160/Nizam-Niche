@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 
 const Cart = () => {
-  const { products, currency, cartItems, addToWishlist, setCartItems , updateQuantity } = useContext(ShopContext);
+  const { products, currency, cartItems, addToWishlist, setCartItems, updateQuantity } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -26,24 +26,6 @@ const Cart = () => {
     setCartData(tempData);
   }, [cartItems]);
 
-  const increaseQuantity = (id, size) => {
-    const key = `${id}_${size}`;
-    setCartItems(prev => ({
-      ...prev,
-      [key]: (prev[key] || 0) + 1,
-    }));
-  };
-
-  const decreaseQuantity = (id, size) => {
-    const key = `${id}_${size}`;
-    setCartItems(prev => {
-      if (!prev[key]) return prev;
-      const updated = { ...prev };
-      if (updated[key] === 1) delete updated[key];
-      else updated[key] -= 1;
-      return updated;
-    });
-  };
 
   const removeFromCart = (id, size) => {
     const key = `${id}_${size}`;
@@ -93,7 +75,7 @@ const Cart = () => {
         ) : (
           <div className='p-6'>
             {cartData.map((item, index) => {
-              const product = products.find(p => p.id === item.id);
+              const product = products.find(p => p.id.toString() === item.id.toString());
               if (!product) return null;
 
               return (
@@ -110,16 +92,24 @@ const Cart = () => {
                     </div>
 
                     <div className='flex gap-2 items-center'>
-                      <button onClick={() => decreaseQuantity(item.id, item.size)} className='px-2 py-1 bg-[#6b1d1d] text-[#efd1c0] rounded-full font-bold hover:bg-[#24160f]'>-</button>
-                      <span className='text-lg font-bold text-[#24160f]'>{item.quantity}</span>
-                      <button onClick={() => increaseQuantity(item.id, item.size)} className='px-2 py-1 bg-[#6b1d1d] text-[#efd1c0] rounded-full font-bold hover:bg-[#24160f]'>+</button>
+                      <input
+                        type="number"
+                        min={1}
+                        value={item.quantity}
+                        onChange={(e) => {
+                          const newQty = Number(e.target.value);
+                          if (newQty >= 1) updateQuantity(item.id, item.size, newQty);
+                        }}
+                        className='w-12 sm:w-16 px-2 py-1 border border-[#6b1d1d] rounded text-center text-[#24160f] bg-[#fff6f2] focus:outline-none focus:ring-2 focus:ring-[#6b1d1d]'
+                      />
+
                     </div>
 
                     <div className='flex flex-col gap-2 sm:flex-row'>
                       <button onClick={() => moveToWishlist(item.id, item.size)} className='px-3 py-2 bg-[#efd1c0] text-[#6b1d1d] border border-[#6b1d1d] rounded-full hover:bg-[#6b1d1d] hover:text-[#efd1c0]'>
                         ❤️ Wishlist
                       </button>
-                      <button onClick={() => updateQuantity(item.id, item.size)} className='px-3 py-2 bg-red-100 text-red-700 border border-red-400 rounded-full hover:bg-red-700 hover:text-white'>
+                      <button onClick={() => updateQuantity(item.id, item.size, 0)} className='px-3 py-2 bg-red-100 text-red-700 border border-red-400 rounded-full hover:bg-red-700 hover:text-white'>
                         🗑 Remove
                       </button>
                     </div>
