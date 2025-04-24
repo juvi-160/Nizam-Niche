@@ -17,56 +17,60 @@ const ShopContextProvider = (props) => {
 
   const addToCart = (productId, size) => {
     const key = size ? `${productId}_${size}` : `${productId}`;
-    setCartItems((prev) => {
-      const updatedCart = {
-        ...prev,
-        [key]: (prev[key] || 0) + 1,
-      };
-      return updatedCart;
-    });
+    setCartItems((prev) => ({
+      ...prev,
+      [key]: (prev[key] || 0) + 1,
+    }));
+    toast.success("Added to cart");
   };
 
-  const addToWishlist = (itemId, size) => {
-    let wishData = { ...wishlistItems };
-    if (!wishData[itemId]) wishData[itemId] = {};
-    const key = size || "_default";
-    wishData[itemId][key] = true;
-    setWishlistItems(wishData);
+  const addToWishlist = (productId, size = "default") => {
+    const key = `${productId}_${size}`;
+    setWishlistItems((prev) => ({
+      ...prev,
+      [key]: (prev[key] || 0) + 1,
+    }));
     toast.success("Added to wishlist");
   };
 
   const getCartCount = () => {
-    let totalCount = 0;
-    for (const key in cartItems) {
-      totalCount += cartItems[key];
-    }
-    return totalCount;
+    return Object.values(cartItems).reduce((acc, val) => acc + val, 0);
   };
 
-  const updateQuantity = async(itemId,size,quantity) => {
-    let cartData = structuredClone(cartItems);
+  const getWishCount = () => {
+    return Object.values(wishlistItems).reduce((acc, val) => acc + val, 0);
+  };
 
-    cartData[itemId][size] = quantity;
+  const updateQuantity = (itemId, quantity) => {
+    setCartItems((prev) => ({
+      ...prev,
+      [itemId]: quantity,
+    }));
+  };
 
-    setCartItems(cartData);
-
-  }
-  
+  const updateWishQuantity = (itemId, quantity = 0) => {
+    setWishlistItems((prev) => {
+      const updated = { ...prev };
+      if (quantity <= 0) {
+        delete updated[itemId];
+      } else {
+        updated[itemId] = quantity;
+      }
+      return updated;
+    });
+  };
 
   const getCartAmount = () => {
     let totalAmount = 0;
     for (const key in cartItems) {
-      const [productId, size] = key.split("_");
-      const product = products.find(p => p.id.toString() === productId);
+      const [productId] = key.split("_");
+      const product = products.find((p) => p.id.toString() === productId);
       if (product) {
         totalAmount += product.price * cartItems[key];
       }
     }
     return totalAmount;
   };
-
-
-  
 
   useEffect(() => {
     console.log("Cart:", cartItems);
@@ -87,13 +91,16 @@ const ShopContextProvider = (props) => {
     getCartCount,
     getCartAmount,
     wishlistItems,
-    setWishlistItems,
     addToWishlist,
-    updateQuantity,
+    updateWishQuantity,
+    getWishCount,
+    setWishlistItems,
   };
 
   return (
-    <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
+    <ShopContext.Provider value={value}>
+      {props.children}
+    </ShopContext.Provider>
   );
 };
 

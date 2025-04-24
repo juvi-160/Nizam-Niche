@@ -7,7 +7,7 @@ import { ShopContext } from "../context/ShopContext";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const { getCartCount } = useContext(ShopContext);
+  const { getCartCount, getWishCount } = useContext(ShopContext);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleShop = () => setIsShopOpen(!isShopOpen);
@@ -125,8 +125,11 @@ const Header = () => {
           </div>
 
           {/* Wishlist */}
-          <Link to="/wishlist" className="hover:text-[#24160f]">
+          <Link to="/wishlist" className="hover:text-[#24160f] relative">
             <i className="fa-regular fa-heart"></i>
+            <p className="absolute right-[-8px] bottom-[-8px] w-4 h-4 flex items-center justify-center bg-[#6b1d1d] text-white rounded-full text-[8px]">
+              {getWishCount()}
+            </p>
           </Link>
 
           {/* Cart */}
