@@ -2,39 +2,36 @@ import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
+import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
-  const { products, currency, cartItems, addToWishlist, setCartItems, updateQuantity } = useContext(ShopContext);
+  const { products, currency, cartItems, addToWishlist, removeFromCart, updateQuantity, navigate } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
-    const tempData = [];
-
-    for (const key in cartItems) {
-      const [productId, size = "default"] = key.split("_");
-      const quantity = cartItems[key];
-
-      if (quantity > 0) {
-        tempData.push({
-          id: Number(productId),
-          size,
-          quantity,
-        });
-      }
-    }
-
+    const tempData = Object.entries(cartItems).map(([key, quantity]) => {
+      const [id, size = "default"] = key.split("_");
+      return {
+        id: Number(id),
+        size,
+        quantity,
+      };
+    });
     setCartData(tempData);
   }, [cartItems]);
 
-
-  const removeFromCart = (id, size) => {
+  const increaseQuantity = (id, size) => {
     const key = `${id}_${size}`;
-    setCartItems(prev => {
-      const updated = { ...prev };
-      delete updated[key];
-      return updated;
-    });
+    updateQuantity(key, (wishlistItems[key] || 0) + 1);
   };
+
+  const decreaseQuantity = (id, size) => {
+    const key = `${id}_${size}`;
+    const current = wishlistItems[key] || 0;
+    if (current > 1) updateQuantity(key, current - 1);
+    else updateQuantity(key, 0);
+  };
+
 
   const moveToWishlist = (id, size) => {
     removeFromCart(id, size);
@@ -86,30 +83,22 @@ const Cart = () => {
                     <div>
                       <h3 className='text-xl font-bold text-[#24160f]'>{product.title || "Unnamed Product"}</h3>
                       <p className='text-sm text-[#6b1d1d]'>Size: {item.size}</p>
-                      <p className='text-sm text-[#6b1d1d]'>
+                      <p className="text-sm text-[#6b1d1d]">
                         Price: {currency}{product.price} × {item.quantity} = <span className="font-semibold">{currency}{product.price * item.quantity}</span>
                       </p>
                     </div>
 
-                    <div className='flex gap-2 items-center'>
-                      <input
-                        type="number"
-                        min={1}
-                        value={item.quantity}
-                        onChange={(e) => {
-                          const newQty = Number(e.target.value);
-                          if (newQty >= 1) updateQuantity(item.id, item.size, newQty);
-                        }}
-                        className='w-12 sm:w-16 px-2 py-1 border border-[#6b1d1d] rounded text-center text-[#24160f] bg-[#fff6f2] focus:outline-none focus:ring-2 focus:ring-[#6b1d1d]'
-                      />
-
+                    <div className="flex gap-2 items-center">
+                      <button onClick={() => decreaseQuantity(item.id, item.size)} className="px-2 py-1 bg-[#6b1d1d] text-[#efd1c0] rounded-full font-bold hover:bg-[#24160f]">-</button>
+                      <span className="text-lg font-bold text-[#24160f]">{item.quantity}</span>
+                      <button onClick={() => increaseQuantity(item.id, item.size)} className="px-2 py-1 bg-[#6b1d1d] text-[#efd1c0] rounded-full font-bold hover:bg-[#24160f]">+</button>
                     </div>
 
                     <div className='flex flex-col gap-2 sm:flex-row'>
                       <button onClick={() => moveToWishlist(item.id, item.size)} className='px-3 py-2 bg-[#efd1c0] text-[#6b1d1d] border border-[#6b1d1d] rounded-full hover:bg-[#6b1d1d] hover:text-[#efd1c0]'>
                         ❤️ Wishlist
                       </button>
-                      <button onClick={() => updateQuantity(item.id, item.size, 0)} className='px-3 py-2 bg-red-100 text-red-700 border border-red-400 rounded-full hover:bg-red-700 hover:text-white'>
+                      <button onClick={() => removeFromCart(item.id, item.size)} className='px-3 py-2 bg-red-100 text-red-700 border border-red-400 rounded-full hover:bg-red-700 hover:text-white'>
                         🗑 Remove
                       </button>
                     </div>
@@ -117,6 +106,19 @@ const Cart = () => {
                 </div>
               );
             })}
+
+          </div>
+        )}
+
+        {cartData.length > 0 && (
+          <div className='flex justify-end my-20 mr-10'>
+            <div className='w-full sm:w-[450px]'>
+              <CartTotal />
+              <div className='w-full text-end'>
+                <button onClick={() => navigate('/placeOrder')} className='bg-[#24160f] text-[#efd1c0] text-sm my-8 px-8 py-3'>PROCEED TO CHECKOUT</button>
+
+              </div>
+            </div>
           </div>
         )}
       </Layout>

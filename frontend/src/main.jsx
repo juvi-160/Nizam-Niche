@@ -40,7 +40,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/collections" element={<Collections />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/orders" element={<Orders />} />
-          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/placeOrder" element={<PlaceOrder />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </ShopContextProvider>

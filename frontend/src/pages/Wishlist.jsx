@@ -10,6 +10,7 @@ const Wishlist = () => {
     wishlistItems,
     addToCart,
     updateWishQuantity,
+    removeFromWishlist
   } = useContext(ShopContext);
 
   const [wishlistData, setWishlistData] = useState([]);
@@ -38,10 +39,6 @@ const Wishlist = () => {
     else updateWishQuantity(key, 0);
   };
 
-  const removeFromWishlist = (id, size) => {
-    const key = `${id}_${size}`;
-    updateWishQuantity(key, 0);
-  };
 
   const moveToCart = (id, size) => {
     addToCart(id, size);

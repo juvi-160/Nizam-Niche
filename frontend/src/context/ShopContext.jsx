@@ -24,6 +24,22 @@ const ShopContextProvider = (props) => {
     toast.success("Added to cart");
   };
 
+  const removeFromCart = (productId, size = "default") => {
+    const key = `${productId}_${size}`;
+    setCartItems(prev => {
+      const updated = { ...prev };
+      delete updated[key];
+      return updated;
+    });
+    toast.info("Removed from cart");
+  };
+
+  const clearCart = () => {
+    setCartItems({});
+    toast.info("Cart cleared");
+  };
+
+
   const addToWishlist = (productId, size = "default") => {
     const key = `${productId}_${size}`;
     setWishlistItems((prev) => ({
@@ -33,6 +49,22 @@ const ShopContextProvider = (props) => {
     toast.success("Added to wishlist");
   };
 
+  const removeFromWishlist = (productId, size = "default") => {
+    const key = `${productId}_${size}`;
+    setWishlistItems(prev => {
+      const updated = { ...prev };
+      delete updated[key];
+      return updated;
+    });
+    toast.info("Removed from wishlist");
+  };
+
+  const clearWishlist = () => {
+    setWishlistItems({});
+    toast.info("Wishlist cleared");
+  };
+
+
   const getCartCount = () => {
     return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
   };
@@ -41,7 +73,7 @@ const ShopContextProvider = (props) => {
     return Object.values(wishlistItems).reduce((acc, val) => acc + val, 0);
   };
 
-  const updateQuantity = (id, size, quantity) => {
+  const updateQuantity = async(id, size, quantity) => {
     const key = `${id}_${size}`;
     setCartItems(prev => {
       const updated = { ...prev };
@@ -68,13 +100,16 @@ const ShopContextProvider = (props) => {
 
   const getCartAmount = () => {
     let totalAmount = 0;
-    for (const key in cartItems) {
-      const [productId] = key.split("_");
-      const product = products.find((p) => p.id.toString() === productId);
-      if (product) {
-        totalAmount += product.price * cartItems[key];
+    
+    Object.entries(cartItems).forEach(([key, quantity]) => {
+      const [productId] = key.split('_'); // Extract just the product ID
+      const product = products.find(p => p.id.toString() === productId);
+      
+      if (product && quantity > 0) {
+        totalAmount += product.price * quantity;
       }
-    }
+    });
+    
     return totalAmount;
   };
 
@@ -93,6 +128,7 @@ const ShopContextProvider = (props) => {
     showSearch,
     setShowSearch,
     cartItems,
+    setCartItems,
     addToCart,
     getCartCount,
     getCartAmount,
@@ -101,7 +137,14 @@ const ShopContextProvider = (props) => {
     updateWishQuantity,
     getWishCount,
     setWishlistItems,
-    updateQuantity
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+    removeFromWishlist,
+    clearWishlist,
+    getCartAmount,
+    navigate
+
   };
 
   return (
