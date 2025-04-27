@@ -18,17 +18,51 @@ const Product = () => {
   const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
+    console.log("All products:", products);
+    console.log("looking for product id:",productId)
     if (products.length > 0) {
       const foundProduct = products.find(
-        (item) => item.id.toString() === productId
+        (item) => item._id && item._id.toString() === productId
       );
+      console.log("Found product:", foundProduct);
       if (foundProduct) {
         setProductData(foundProduct);
-        setImage(foundProduct.images[0]);
+        setImage(foundProduct.images?.[0] || "");
       }
     }
-  }, [productId, products]);
+  }, [productId, products]);useEffect(() => {
+  const findProduct = () => {
+    // First check if products are loaded
+    if (products.length === 0) {
+      console.log("Products array is empty");
+      return;
+    }
 
+    // Debug: log all product IDs
+    console.log("All product IDs:", products.map(p => p.id));
+
+    // More flexible ID comparison
+    const foundProduct = products.find(item => {
+      // Compare both as strings to avoid type mismatch
+      const itemId = item._id?.toString().trim();
+      const searchId = productId?.toString().trim();
+      return itemId === searchId;
+    });
+
+    console.log("Comparison result:", foundProduct ? "FOUND" : "NOT FOUND");
+
+    if (foundProduct) {
+      setProductData(foundProduct);
+      setImage(foundProduct.images?.[0] || "");
+    } else {
+      console.error(`Product with ID ${productId} not found in:`, products);
+    }
+  };
+
+  findProduct();
+}, [productId, products]);
+
+  
   const isClothingOrShoes =
     productData?.subCategory?.includes("Clothing") ||
     productData?.subCategory?.includes("Shoes");

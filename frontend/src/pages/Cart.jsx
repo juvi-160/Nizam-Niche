@@ -12,7 +12,7 @@ const Cart = () => {
     const tempData = Object.entries(cartItems).map(([key, quantity]) => {
       const [id, size = "default"] = key.split("_");
       return {
-        id: Number(id),
+        id,
         size,
         quantity,
       };
@@ -72,7 +72,7 @@ const Cart = () => {
         ) : (
           <div className='p-6'>
             {cartData.map((item, index) => {
-              const product = products.find(p => p.id.toString() === item.id.toString());
+              const product = products.find(p => p._id.toString() === item._id.toString());
               if (!product) return null;
 
               return (

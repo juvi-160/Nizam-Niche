@@ -17,4 +17,5 @@ productRouter.delete('/delete/:id',isAdmin, deleteProduct);
 productRouter.put('/update/:id', isAdmin, updateProduct);
 productRouter.get('/:id', getProductById);
 
+
 export default productRouter;
