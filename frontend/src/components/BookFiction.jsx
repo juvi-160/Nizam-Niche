@@ -3,7 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import ProductItem from "./ProductItem";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-const ArtifactBidiriware = () => {
+const BookFiction = () => {
   const { products } = useContext(ShopContext);
   const [mensProducts, setMensProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,7 +11,7 @@ const ArtifactBidiriware = () => {
 
   useEffect(() => {
     const filteredProducts = products.filter(
-      (product) => product.artifactCategory?.toLowerCase() === "bidriware"
+      (product) => product.genre?.toLowerCase() === "fiction & poetry"
     );
     setMensProducts(filteredProducts);
   }, [products]);
@@ -97,4 +97,4 @@ const ArtifactBidiriware = () => {
   );
 };
 
-export default ArtifactBidiriware;
+export default BookFiction;

@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "../components/Layout";
-import img1 from "../assets/a1.png";
-import img2 from "../assets/a2.png";
-import img3 from "../assets/a3.png";
-import img4 from "../assets/a4.png";
-import img5 from "../assets/a5.png";
 import img6 from "../assets/a101.png";
+import ArtifactSculpture from "../components/ArtifactsSculpture";
+import ArtifactBidiriware from "../components/ArtifactBidiriware";
+import ArtifactsIslamic from "../components/ArtifactsIslamic";
+import ArtifactsPainting from "../components/ArtifactsPainting";
+import ArtifactsTopCollection from "../components/ArtifactsTopCollection"
 
 const Artifacts = () => {
   return (
@@ -31,10 +31,11 @@ const Artifacts = () => {
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
             SCULPTURES AND MINIATURES
           </h1>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-5 m-5 pr-10 pl-10 ">
+          {/* <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-5 m-5 pr-10 pl-10 ">
             <img src={img1} alt="1" className="w-full h-60 object-cover rounded-md" />
             <img src={img2} alt="2" className="w-full h-60 object-cover rounded-md" />
-          </div>
+          </div> */}
+          <ArtifactSculpture/>
           <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
             Hyderabadi sculptures and miniatures are a celebration of the city’s architectural and cultural grandeur. From finely crafted brass figurines to detailed replicas of iconic landmarks like Charminar, each piece reflects the artistry and heritage of Hyderabad.
           </p>
@@ -46,9 +47,10 @@ const Artifacts = () => {
         {/* Bidriware */}
         <div>
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">BIDRIWARE</h1>
-          <div className="p-5 m-5 pr-10 pl-10">
+          {/* <div className="p-5 m-5 pr-10 pl-10">
             <img src={img3} alt="1" className="w-full h-75 object-cover rounded-md " />
-          </div>
+          </div> */}
+          <ArtifactBidiriware/>
           <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
             Bidriware, a hallmark of Hyderabadi artistry, features stunning silver inlay on dark metal. From vases to trays, each handcrafted piece is a masterpiece of elegance and tradition.
           </p>
@@ -60,9 +62,10 @@ const Artifacts = () => {
         {/* Islamic Art */}
         <div>
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">ISLAMIC ART</h1>
-          <div className="p-5 m-5 pr-10 pl-10">
+          {/* <div className="p-5 m-5 pr-10 pl-10">
             <img src={img4} alt="1" className="w-full h-75 object-cover rounded-md" />
-          </div>
+          </div> */}
+          <ArtifactsIslamic/>
           <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
             Hyderabadi Islamic wall art beautifully blends spiritual grace with artistic mastery, showcasing intricate Arabic calligraphy and geometric patterns.
           </p>
@@ -74,9 +77,10 @@ const Artifacts = () => {
         {/* Paintings */}
         <div>
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">PAINTINGS</h1>
-          <div className="px-5 py-5 p-5 m-5 pr-10 pl-10">
+          {/* <div className="px-5 py-5 p-5 m-5 pr-10 pl-10">
             <img src={img5} alt="1" className="w-full h-75 object-cover rounded-md" />
-          </div>
+          </div> */}
+          <ArtifactsPainting/>
           <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
             Hyderabadi paintings, including Nirmal art, bring to life the grandeur of royal courts and the beauty of Deccan landscapes. Each stroke reflects the vibrant history and artistic flair of the region.
           </p>
@@ -84,6 +88,12 @@ const Artifacts = () => {
           <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP ACCESSORIES NOW!</button>
           </div>
         </div>
+
+        <div>
+          <ArtifactsTopCollection/>
+        </div>
+
+
       </Layout>
     </div>
   );

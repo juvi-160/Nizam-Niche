@@ -2,6 +2,11 @@ import React from "react";
 import Layout from "../components/Layout";
 import Card from "../components/Card";
 import img from "../assets/b101.png";
+import BookFiction from "../components/BookFiction";
+import BookHistory from "../components/BookHistory";
+import BookCulture from "../components/BookCulture";
+import BookCooks from "../components/BookCooks";
+import BooksTopCollection from "../components/BooksTopCollection"
 
 const Books = () => {
   return (
@@ -27,12 +32,7 @@ const Books = () => {
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
             FICTION AND POETRY
           </h1>
-          <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 p-8">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <BookFiction/>
           <div className="text-[#24160f] text-sm md:text-xl text-center px-6 md:px-10 pb-10 font-bold">
             <p>
               Experience the creativity of Hyderabad through its fiction and
@@ -47,12 +47,7 @@ const Books = () => {
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
             HISTORY
           </h1>
-          <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 p-8">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <BookHistory/>
           <div className="text-[#24160f] text-sm md:text-xl text-center px-6 md:px-10 pb-10 font-bold">
             <p>
               Unveil the stories of Hyderabad’s past through captivating history
@@ -67,12 +62,7 @@ const Books = () => {
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
             CULTURE AND HERITAGE
           </h1>
-          <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 p-8">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <BookCulture/>
           <div className="text-[#24160f] text-sm md:text-xl text-center px-6 md:px-10 pb-10 font-bold">
             <p>
               Immerse yourself in the cultural fabric of Hyderabad. Our
@@ -87,12 +77,7 @@ const Books = () => {
           <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
             COOK BOOK'S
           </h1>
-          <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 p-8">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </div>
+          <BookCooks/>
           <div className="text-[#24160f] text-sm md:text-xl text-center px-6 md:px-10 pb-10 font-bold">
             <p>
               Discover the rich culinary heritage of Hyderabad. From biryanis to
@@ -103,11 +88,8 @@ const Books = () => {
         </div>
 
         {/* explore */}
-        <div className="bg-red-700 p-6 md:p-10 mb-10 text-white text-center">
-          <h1 className="text-lg md:text-xl font-bold">EXPLORE MORE BOOKS</h1>
-          <button className="bg-red-600 rounded-xl px-4 py-2 mt-3 text-sm md:text-base hover:bg-red-800 transition">
-            EXPLORE
-          </button>
+        <div className=" p-6 md:p-10 mb-10 text-center">
+          <BooksTopCollection/>
         </div>
       </Layout>
     </div>
