@@ -15,7 +15,7 @@ const TopCollections = () => {
     <div>
       <div className="pt-10 px-4 md:px-10">
         <h1 className="text-[#6b1d1d] text-2xl md:text-3xl font-bold text-center mb-6">
-          TOP COLLECTIONS
+          MOST POPULAR
         </h1>
       </div>
       {/* rendering products */}

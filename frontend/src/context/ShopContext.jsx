@@ -27,7 +27,7 @@ const ShopContextProvider = (props) => {
   };
 
   const removeFromCart = (productId, size = "default") => {
-    const key = `${productId}_${size}`;
+    const key = size ? `${productId}_${size}` : `${productId}`
     setCartItems(prev => {
       const updated = { ...prev };
       delete updated[key];
@@ -43,16 +43,16 @@ const ShopContextProvider = (props) => {
 
 
   const addToWishlist = (productId, size = "default") => {
-    const key = `${productId}_${size}`;
+    const key = size ? `${productId}_${size}` : `${productId}`
     setWishlistItems((prev) => ({
       ...prev,
       [key]: (prev[key] || 0) + 1,
     }));
-    toast.success("Added to wishlist");
+    // toast.success("Added to wishlist");
   };
 
   const removeFromWishlist = (productId, size = "default") => {
-    const key = `${productId}_${size}`;
+    const key = size ? `${productId}_${size}` : `${productId}`
     setWishlistItems(prev => {
       const updated = { ...prev };
       delete updated[key];
@@ -105,7 +105,7 @@ const ShopContextProvider = (props) => {
     
     Object.entries(cartItems).forEach(([key, quantity]) => {
       const [productId] = key.split('_'); // Extract just the product ID
-      const product = products.find(p => p.id.toString() === productId);
+      const product = products.find(p => p._id.toString() === productId);
       
       if (product && quantity > 0) {
         totalAmount += product.price * quantity;

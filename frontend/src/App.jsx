@@ -19,6 +19,10 @@ import img10 from "./assets/us3.png";
 import img11 from "./assets/us4.png";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import WomenCollection from "./components/WomenCollection.jsx";
+import MenTopCollection from "./components/MenTopCollection.jsx";
+import ArtifactsTopCollection from "./components/ArtifactsTopCollection.jsx";
+import BooksTopCollection from "./components/BooksTopCollection.jsx";
 
 function App() {
   return (
@@ -97,7 +101,12 @@ function App() {
         </section>
 
         {/* Top Collections */}
+        <WomenCollection/>
+        <MenTopCollection/>
+        <ArtifactsTopCollection/>
+        <BooksTopCollection/>
         <TopCollections />
+
 
         {/* About Us */}
         {/* Our Values */}

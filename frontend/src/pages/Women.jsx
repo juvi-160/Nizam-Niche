@@ -13,6 +13,7 @@ import img9 from '../assets/w8.png';
 import img10 from '../assets/w9.png';
 import img11 from '../assets/w10.png';
 import img12 from '../assets/w11.png';
+import WomensClothing from '../components/WomensClothing';
 
 const Women = () => {
   return (
@@ -38,13 +39,14 @@ const Women = () => {
           <h1 className="text-center pt-10 text-[#24160f] text-xl sm:text-2xl font-bold">
             WOMEN'S CLOTHING
           </h1>
-          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4 py-5">
+          {/* <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-4 py-5">
             <img src={img2} alt="1" className="rounded-md" />
             <img src={img3} alt="2" className="rounded-md" />
             <img src={img4} alt="3" className="rounded-md" />
             <img src={img5} alt="4" className="rounded-md" />
             <img src={img6} alt="5" className="rounded-md" />
-          </div>
+          </div> */}
+          <WomensClothing/>
           <p className="text-[#24160f] text-justify text-sm sm:text-base pb-6 font-bold">
             Hyderabadi women’s clothing captures the essence of royalty, blending intricate embroidery and luxurious fabrics to create timeless elegance. From khada dupattas to shararas, each piece tells a story of tradition and grace.
           </p>
