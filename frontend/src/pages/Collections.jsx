@@ -107,10 +107,21 @@ const Collections = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const searchParam = searchParams.get("search");
+    const categoryParam = searchParams.get("category");
+    const subCategoryParam = searchParams.get("subcategory");
+    
 
     if (searchParam) {
       setSearch(searchParam);
       setShowSearch(true);
+    }
+
+    if (categoryParam) {
+      setCategory([categoryParam]);
+    }
+
+    if (subCategoryParam) {
+      setSubCategory([subCategoryParam]);
     }
   }, [location.search]);
 
@@ -206,6 +217,12 @@ const Collections = () => {
                           className="w-3 h-3"
                           value={option}
                           onChange={filter.onChange}
+                          checked={
+                            (filter.title === "CATEGORIES" && category.includes(option)) ||
+                            (filter.title === "SUB-CATEGORIES" && subCategory.includes(option)) ||
+                            (filter.title === "BOOKS GENRE" && genre.includes(option)) ||
+                            (filter.title === "ARTIFACT CATEGORIES" && artifacts.includes(option))
+                          }
                         />
                         {option}
                       </label>

@@ -1,68 +1,57 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import Layout from "../components/Layout";
 import { useParams } from "react-router";
 import { ShopContext } from "../context/ShopContext";
-import { Star, Heart, HeartOff } from "lucide-react";
+import { Star, Heart } from "lucide-react";
 import RelatedProducts from "../components/RelatedProducts";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency, addToCart, addToWishlist } =
-    useContext(ShopContext);
+  const {
+    products,
+    currency,
+    addToCart,
+    addToWishlist,
+    removeFromWishlist,
+    wishlistItems,
+  } = useContext(ShopContext);
+
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
-  const [wishlist, setWishlist] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
 
+  // Find product based on ID
   useEffect(() => {
-    console.log("All products:", products);
-    console.log("looking for product id:",productId)
-    if (products.length > 0) {
-      const foundProduct = products.find(
-        (item) => item._id && item._id.toString() === productId
-      );
-      console.log("Found product:", foundProduct);
+    const findProduct = () => {
+      if (products.length === 0) return;
+
+      const foundProduct = products.find((item) => {
+        const itemId = item._id?.toString().trim();
+        const searchId = productId?.toString().trim();
+        return itemId === searchId;
+      });
+
       if (foundProduct) {
         setProductData(foundProduct);
         setImage(foundProduct.images?.[0] || "");
+      } else {
+        console.error(`Product with ID ${productId} not found.`);
       }
-    }
-  }, [productId, products]);useEffect(() => {
-  const findProduct = () => {
-    // First check if products are loaded
-    if (products.length === 0) {
-      console.log("Products array is empty");
-      return;
-    }
+    };
 
-    // Debug: log all product IDs
-    console.log("All product IDs:", products.map(p => p.id));
+    findProduct();
+  }, [productId, products]);
 
-    // More flexible ID comparison
-    const foundProduct = products.find(item => {
-      // Compare both as strings to avoid type mismatch
-      const itemId = item._id?.toString().trim();
-      const searchId = productId?.toString().trim();
-      return itemId === searchId;
-    });
+  // Determine if product is in wishlist
+  const isInWishlist = useMemo(() => {
+    const productIds = Object.keys(wishlistItems).map((key) =>
+      key.split("_")[0]
+    );
+    return productIds.includes(productData?._id?.toString());
+  }, [wishlistItems, productData]);
 
-    console.log("Comparison result:", foundProduct ? "FOUND" : "NOT FOUND");
-
-    if (foundProduct) {
-      setProductData(foundProduct);
-      setImage(foundProduct.images?.[0] || "");
-    } else {
-      console.error(`Product with ID ${productId} not found in:`, products);
-    }
-  };
-
-  findProduct();
-}, [productId, products]);
-
-  
   const isClothingOrShoes =
     productData?.subCategory?.includes("Clothing") ||
     productData?.subCategory?.includes("Shoes");
@@ -73,7 +62,7 @@ const Product = () => {
       return;
     }
     const sizeToSend = isClothingOrShoes ? selectedSize : null;
-    addToCart(productData.id, sizeToSend);
+    addToCart(productData._id, sizeToSend);
   };
 
   const handleAddToWishlist = () => {
@@ -81,13 +70,15 @@ const Product = () => {
       toast.error("Please select a size before adding to wishlist.");
       return;
     }
+
     const sizeToSend = isClothingOrShoes ? selectedSize : null;
-    if (wishlist) {
-      // Optional: removeFromWishlist(productData.id);
-      setWishlist(false);
+
+    if (isInWishlist) {
+      removeFromWishlist(productData._id);
+      toast.warn("Removed from wishlist");
     } else {
-      addToWishlist(productData.id, sizeToSend);
-      setWishlist(true);
+      addToWishlist(productData._id, sizeToSend);
+      toast.success("Added to wishlist");
     }
   };
 
@@ -105,7 +96,7 @@ const Product = () => {
     <div className="bg-[#efd1c0] min-h-screen">
       <Layout>
         <ToastContainer />
-        <div className="border-t-2 pt-8 px-4 sm:px-6 md:px-12 transition-opacity ease-in duration-500 opacity-100">
+        <div className="border-t-2 pt-8 px-4 sm:px-6 md:px-12">
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Images */}
             <div className="flex flex-col-reverse gap-4 lg:flex-row lg:flex-[1.2]">
@@ -136,10 +127,10 @@ const Product = () => {
                   {productData.title}
                 </h1>
                 <button onClick={handleAddToWishlist}>
-                  {wishlist ? (
+                  {isInWishlist ? (
                     <Heart className="text-red-500" fill="red" />
                   ) : (
-                    <HeartOff className="text-gray-500" />
+                    <Heart className="text-gray-500 hover:text-red-500" />
                   )}
                 </button>
               </div>

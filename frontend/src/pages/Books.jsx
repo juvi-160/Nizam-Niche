@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "../components/Layout";
-import Card from "../components/Card";
 import img from "../assets/b101.png";
 import BookFiction from "../components/BookFiction";
 import BookHistory from "../components/BookHistory";
 import BookCulture from "../components/BookCulture";
 import BookCooks from "../components/BookCooks";
 import BooksTopCollection from "../components/BooksTopCollection"
+import {Link} from 'react-router-dom'
 
 const Books = () => {
   return (
@@ -40,6 +40,9 @@ const Books = () => {
               filled with stories and verses of love, life, and culture.
             </p>
           </div>
+          <div className="flex justify-center items-center mb-10">
+            <Link to="/collections?category=Books&genre=Fiction & Poetry" ><button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP COLLECTION NOW!</button></Link>
+          </div>
         </div>
 
         {/* history */}
@@ -54,6 +57,9 @@ const Books = () => {
               books. Dive into the rich legacy that shaped the city’s culture,
               traditions, and heritage.
             </p>
+          </div>
+          <div className="flex justify-center items-center mb-10">
+            <Link to="/collections?category=Books&genre=Fiction & Poetry" ><button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP COLLECTION NOW!</button></Link>
           </div>
         </div>
 
@@ -70,6 +76,9 @@ const Books = () => {
               vibrant history that define this timeless city.
             </p>
           </div>
+          <div className="flex justify-center items-center mb-10">
+            <Link to="/collections?category=Books&genre=Culture & Heritage" ><button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP COLLECTION NOW!</button></Link>
+          </div>
         </div>
 
         {/* cook books */}
@@ -84,6 +93,9 @@ const Books = () => {
               desserts, these cookbooks bring you closer to the flavors that
               have been passed down through generations.
             </p>
+          </div>
+          <div className="flex justify-center items-center mb-10">
+            <Link to="/collections?category=Books&genre=Cook Books" ><button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold ">SHOP COLLECTION NOW!</button></Link>
           </div>
         </div>
 

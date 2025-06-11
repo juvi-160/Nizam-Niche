@@ -27,7 +27,7 @@ const productSchema = new mongoose.Schema(
     },
     sizes: {
       type: [String],
-      enum: [ "S", "M", "L", "XL"],
+      enum: [ "S", "M", "L", "XL", "Free Size"],
       required: function () {
         return (
           this.subCategory?.includes("Clothing") ||

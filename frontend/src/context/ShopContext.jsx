@@ -15,6 +15,7 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [wishlistItems, setWishlistItems] = useState({});
   const [products,setProducts] =useState([])
+  const [token, setToken] = useState('');
   const navigate = useNavigate();
 
   const addToCart = (productId, size) => {
@@ -48,7 +49,7 @@ const ShopContextProvider = (props) => {
       ...prev,
       [key]: (prev[key] || 0) + 1,
     }));
-    // toast.success("Added to wishlist");
+    toast.success("Added to wishlist");
   };
 
   const removeFromWishlist = (productId, size = "default") => {
@@ -162,6 +163,8 @@ const ShopContextProvider = (props) => {
     removeFromWishlist,
     clearWishlist,
     navigate,
+    token, 
+    setToken
   };
 
   return (

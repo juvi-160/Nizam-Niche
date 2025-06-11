@@ -2,14 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from "../context/ShopContext";
 import ProductItem from "./ProductItem";
 
-const WomensClothing = () => {
+const WomenJewellery = () => {
   const { products } = useContext(ShopContext);
   const [topProducts, setTopProducts] = useState([]);
 
   useEffect(() => {
     // Filter products that belong to the "Women" category
     const womenProducts = products.filter(
-      (product) => product.subCategory?.toLowerCase() === "womens clothing"
+      (product) => product.subCategory?.toLowerCase() === "womens jewellery"
     );
 
     // Set only the top 5
@@ -37,4 +37,4 @@ const WomensClothing = () => {
   );
 };
 
-export default WomensClothing;
+export default WomenJewellery;
