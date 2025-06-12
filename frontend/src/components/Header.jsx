@@ -7,7 +7,15 @@ import { ShopContext } from "../context/ShopContext";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopOpen, setIsShopOpen] = useState(false);
-  const { getCartCount, getWishCount } = useContext(ShopContext);
+  const { getCartCount, getWishCount, navigate, token, setToken, setCartItem } = useContext(ShopContext);
+
+  const logout = () => {
+    navigate("/login");
+    localStorage.removeItem("token");
+    setToken(null);
+    setCartItem([]);
+
+  }
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleShop = () => setIsShopOpen(!isShopOpen);
@@ -30,9 +38,8 @@ const Header = () => {
 
         {/* Navigation */}
         <nav
-          className={`${
-            isMenuOpen ? "block" : "hidden"
-          } md:flex md:items-center md:gap-6 absolute md:static bg-[#EFD1C0] top-20 left-0 w-full md:w-auto px-6 md:px-0 py-4 md:py-0 shadow-md md:shadow-none z-40`}
+          className={`${isMenuOpen ? "block" : "hidden"
+            } md:flex md:items-center md:gap-6 absolute md:static bg-[#EFD1C0] top-20 left-0 w-full md:w-auto px-6 md:px-0 py-4 md:py-0 shadow-md md:shadow-none z-40`}
         >
           <Link
             to="/"
@@ -110,19 +117,22 @@ const Header = () => {
 
           {/* User Dropdown */}
           <div className="relative group">
-            <Link to="/login" className="hover:text-[#24160f]">
+            <div onClick={() => token ? null : navigate("/login")}>
               <i className="fa-regular fa-user"></i>
-            </Link>
-            <div className="absolute right-0 hidden group-hover:flex flex-col gap-2 w-36 py-3 px-5 bg-[#6b1d1d] text-[#efd1c0] rounded shadow-lg mt-2 z-50">
+            </div>
+            {/** dro[down menu] */}
+            {token && <div className="absolute right-0 hidden group-hover:flex flex-col gap-2 w-36 py-3 px-5 bg-[#6b1d1d] text-[#efd1c0] rounded shadow-lg mt-2 z-50">
               <Link to="/profile" className="hover:text-white">
                 My Profile
               </Link>
-              <Link to="/orders" className="hover:text-white">
+              <button onClick={() => navigate('/orders')} className="hover:text-white">
                 Orders
-              </Link>
-              <button className="hover:text-white text-left">Logout</button>
+              </button>
+              <button onClick={logout} className="hover:text-white text-left">Logout</button>
             </div>
+            }
           </div>
+
 
           {/* Wishlist */}
           <Link to="/wishlist" className="hover:text-[#24160f] relative">

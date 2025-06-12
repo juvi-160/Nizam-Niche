@@ -1,105 +1,181 @@
 import React from "react";
 import Layout from "../components/Layout";
-import img6 from "../assets/a101.png";
-import ArtifactSculpture from "../components/ArtifactsSculpture";
-import ArtifactBidiriware from "../components/ArtifactBidiriware";
-import ArtifactsIslamic from "../components/ArtifactsIslamic";
-import ArtifactsPainting from "../components/ArtifactsPainting";
-import ArtifactsTopCollection from "../components/ArtifactsTopCollection"
+import img from "../assets/hero4.jpeg";
+import BookFiction from "../components/BookFiction";
+import BookHistory from "../components/BookHistory";
+import BookCulture from "../components/BookCulture";
+import BookCooks from "../components/BookCooks";
+import BooksTopCollection from "../components/BooksTopCollection";
 import { Link } from "react-router-dom";
 
-const Artifacts = () => {
+const Books = () => {
   return (
-    <div className="bg-[#EFD1C0]">
+    <div className="bg-[#EFD1C0] min-h-screen">
       <Layout>
-        {/* Hero Section */}
-        <div>
-          <h1 className="bg-[#24160f] text-[#efd1c0] text-center font-bold p-3 text-xl md:text-2xl">
-            Where heritage meets artistry in every piece
-          </h1>
-          <div
-            style={{ backgroundImage: `url(${img6})` }}
-            className="flex justify-center items-center h-[300px] md:h-160 bg-cover bg-center p-4"
-          >
-            <h1 className="text-[#efd1c0] font-bold text-2xl md:text-4xl text-center px-4 shadow-2xl">
-              Preserve the past, adorn your present with timeless Hyderabadi craftsmanship
+        {/* Hero Section with Gradient Overlay */}
+        <div className="relative">
+          <div className="bg-[#24160f] py-4">
+            <h1 className="text-center text-[#efd1c0] text-2xl md:text-3xl font-bold tracking-wide">
+              Discover Hyderabad's Legacy, One Page at a Time
             </h1>
+          </div>
+          <div
+            style={{ backgroundImage: `linear-gradient(rgba(36, 22, 15, 0.3), rgba(36, 22, 15, 0.3)), url(${img})` }}
+            className="flex justify-center items-center text-center h-96 md:h-screen/75 bg-cover bg-center bg-no-repeat"
+          >
+            <div className="max-w-4xl px-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-[#efd1c0] mb-6 animate-fade-in">
+                Explore the Stories, Flavors and Traditions of Hyderabad
+              </h1>
+              <Link 
+                to="/collections" 
+                className="inline-block bg-[#6b1d1d] hover:bg-[#501414] text-[#efd1c0] font-semibold px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105"
+              >
+                Browse Our Library
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Sculptures */}
-        <div>
-          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">
-            SCULPTURES AND MINIATURES
-          </h1>
-          <ArtifactSculpture />
-          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
-            Hyderabadi sculptures and miniatures are a celebration of the city’s architectural and cultural grandeur. From finely crafted brass figurines to detailed replicas of iconic landmarks like Charminar, each piece reflects the artistry and heritage of Hyderabad.
-          </p>
-          <Link to="/collections?category=Artifacts&artifactCategory=Suclpted Figures">
-            <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold">
-              SHOP COLLECTION NOW!
-            </button>
-          </Link>
+        {/* Category Sections */}
+        <div className="max-w-7xl mx-auto px-6 py-12 space-y-20">
+          {/* Fiction and Poetry Section */}
+          <section className="group">
+            <div className="">
+              
+              <div className="ml-15 mr-10 space-y-6">
+                <Link to="/collections?category=Books&genre=Fiction & Poetry">
+                  <h2 className="text-3xl font-bold text-[#24160f] border-b-2 border-[#6b1d1d] pb-2">
+                    FICTION AND POETRY
+                  </h2>
+                </Link>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Experience the creativity of Hyderabad through its fiction and poetry. 
+                  Our collection features works by renowned Hyderabadi authors like 
+                  Sarojini Naidu and Jeelani Bano, whose words capture the city's soul. 
+                  From contemporary novels to timeless ghazals, each book offers a 
+                  window into Hyderabad's literary heritage.
+                </p>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Discover award-winning regional literature translated into English, 
+                  preserving the beauty of Urdu and Telugu storytelling for global readers.
+                </p>
+            
+              </div>
+              <div className="">
+                <BookFiction />
+              </div>
+            </div>
+          </section>
+
+          {/* History Section - Reverse Layout */}
+          <section className="group">
+            <div className="">
+              
+              <div className="mr-15 ml-15 space-y-6">
+                <Link to="/collections?category=Books&genre=History">
+                  <h2 className="text-3xl font-bold text-[#24160f] border-b-2 border-[#6b1d1d] pb-2">
+                    HISTORY
+                  </h2>
+                </Link>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Unveil the fascinating stories of Hyderabad's past through our 
+                  meticulously curated history collection. From the Qutb Shahi dynasty 
+                  to the Nizams' golden era, these books document the political intrigue, 
+                  architectural marvels, and cultural evolution that shaped the city.
+                </p>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Featured works include rare archival photographs, first-hand accounts 
+                  from British residents, and newly translated Persian manuscripts that 
+                  reveal untold chapters of Deccan history.
+                </p>
+                
+              </div>
+              <div className="">
+                <BookHistory />
+              </div>
+            </div>
+          </section>
+
+          {/* Culture and Heritage Section */}
+          <section className="group">
+            <div className="">
+              
+              <div className=" mr-15 ml-15 space-y-6">
+                <Link to="/collections?category=Books&genre=Culture & Heritage">
+                  <h2 className="text-3xl font-bold text-[#24160f] border-b-2 border-[#6b1d1d] pb-2">
+                    CULTURE AND HERITAGE
+                  </h2>
+                </Link>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Immerse yourself in Hyderabad's vibrant cultural tapestry through 
+                  our heritage collection. These books explore the city's iconic festivals 
+                  like Bonalu and Bathukamma, traditional crafts such as Bidriware and 
+                  Kalamkari, and the evolution of Hyderabadi Urdu.
+                </p>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Special editions document the restoration of historic landmarks 
+                  like Chowmahalla Palace and the musical legacy of the Taramati 
+                  Baradari cultural complex.
+                </p>
+                
+              </div>
+              <div className="">
+                <BookCulture />
+              </div>
+            </div>
+          </section>
+
+          {/* Cook Books Section - Reverse Layout */}
+          <section className="group">
+            <div className="">
+              
+              <div className="mr-15 ml-15 space-y-6">
+                <Link to="/collections?category=Books&genre=Cook Books">
+                  <h2 className="text-3xl font-bold text-[#24160f] border-b-2 border-[#6b1d1d] pb-2">
+                    COOK BOOKS
+                  </h2>
+                </Link>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  Discover the secrets of Hyderabadi cuisine with our authentic 
+                  cookbook collection. These volumes preserve royal kitchen traditions, 
+                  featuring heirloom recipes from the Nizams' palaces alongside 
+                  beloved street food classics.
+                </p>
+                <p className="text-[#24160f] text-lg leading-relaxed">
+                  From the perfect Dum Biryani to Irani chai and Double Ka Meetha, 
+                  each recipe comes with historical notes about its origins and 
+                  cultural significance in Hyderabad's culinary landscape.
+                </p>
+              
+              </div>
+              <div className="">
+                <BookCooks />
+              </div>
+            </div>
+          </section>
         </div>
 
-        {/* Bidriware */}
-        <div>
-          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">BIDRIWARE</h1>
-          
-          <ArtifactBidiriware />
-          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
-            Bidriware, a hallmark of Hyderabadi artistry, features stunning silver inlay on dark metal. From vases to trays, each handcrafted piece is a masterpiece of elegance and tradition.
-          </p>
-          <Link to="/collections?category=Artifacts&artifactCategory=Bidriware">
-            <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold">
-              SHOP COLLECTION NOW!
-            </button>
-          </Link>
+        {/* Featured Collection */}
+        <div className="bg-[#24160f] py-12">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-3xl font-bold text-[#efd1c0] mb-8 text-center">
+              CURATED COLLECTIONS
+            </h2>
+            <BooksTopCollection />
+            <div className="text-center mt-10">
+              <Link 
+                to="/collections" 
+                className="inline-block border-2 border-[#efd1c0] text-[#efd1c0] hover:bg-[#efd1c0] hover:text-[#24160f] font-semibold px-8 py-3 rounded-md transition-all duration-300"
+              >
+                View All Book Collections
+              </Link>
+            </div>
+          </div>
         </div>
-
-        {/* Islamic Art */}
-        <div>
-          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">ISLAMIC ART</h1>
-          {/* <div className="p-5 m-5 pr-10 pl-10">
-            <img src={img4} alt="1" className="w-full h-75 object-cover rounded-md" />
-          </div> */}
-          <ArtifactsIslamic />
-          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
-            Hyderabadi Islamic wall art beautifully blends spiritual grace with artistic mastery, showcasing intricate Arabic calligraphy and geometric patterns.
-          </p>
-          <Link to="/collections?category=Artifacts&artifactCategory=Islamic Art">
-            <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold">
-              SHOP COLLECTION NOW!
-            </button>
-          </Link>
-        </div>
-
-        {/* Paintings */}
-        <div>
-          <h1 className="text-center pt-10 text-[#24160f] text-xl md:text-2xl font-bold">PAINTINGS</h1>
-          {/* <div className="px-5 py-5 p-5 m-5 pr-10 pl-10">
-            <img src={img5} alt="1" className="w-full h-75 object-cover rounded-md" />
-          </div> */}
-          <ArtifactsPainting />
-          <p className="text-[#24160f] text-base md:text-xl text-center px-10 pb-10 font-bold">
-            Hyderabadi paintings, including Nirmal art, bring to life the grandeur of royal courts and the beauty of Deccan landscapes. Each stroke reflects the vibrant history and artistic flair of the region.
-          </p>
-          <Link to="/collections?category=Artifacts&artifactCategory=Paintings">
-            <button className="bg-[#24160f] p-5 rounded-2xl text-[#efd1c0] items-center flex justify-center hover:bg-[#6b1d1d] font-bold">
-              SHOP COLLECTION NOW!
-            </button>
-          </Link>
-        </div>
-
-        <div>
-          <ArtifactsTopCollection />
-        </div>
-
-
       </Layout>
     </div>
   );
 };
 
-export default Artifacts;
+export default Books;

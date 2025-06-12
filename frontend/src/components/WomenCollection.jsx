@@ -18,13 +18,10 @@ const WomenCollection = () => {
 
   return (
     <div>
-      <div className="pt-10 px-4 md:px-10">
-        <h1 className="text-[#6b1d1d] text-2xl md:text-3xl font-bold text-center mb-6">
-          TOP WOMENS COLLECTION
-        </h1>
+      <div className="pt-2 px-4 md:px-10">
       </div>
       {/* Rendering products */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6 p-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6 pr-8 pl-8">
         {topProducts.map((product, index) => (
           <ProductItem
             key={index}

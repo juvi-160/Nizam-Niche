@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import img1 from "../assets/101.jpg";
-import img2 from "../assets/102.jpg";
-import img3 from "../assets/b101.png";
+import img1 from "../assets/hero1.jpeg";
+import img2 from "../assets/hero2.jpeg";
+import img3 from "../assets/hero3.jpeg";
+import img4 from "../assets/hero4.jpeg";
+
 
 // Animation styles
 const animationStyles = `
@@ -56,6 +58,14 @@ const slides = [
     image: img2,
     title: "Artisan Heritage",
     subtitle: "Handcrafted Wonders",
+    description: "Authentic Bidriware, Kalamkari textiles, and Nirmal paintings crafted by master artisans of the Deccan",
+    cta: "View Artifacts",
+    pattern: "paisley"
+  },
+  {
+    image: img4,
+    title: "Artisan Heritage",
+    subtitle: "Hand Wonders",
     description: "Authentic Bidriware, Kalamkari textiles, and Nirmal paintings crafted by master artisans of the Deccan",
     cta: "View Artifacts",
     pattern: "paisley"
@@ -133,7 +143,7 @@ const Carousel = () => {
 
       {/* Content Container */}
       <div className="absolute inset-0 flex items-center justify-center px-4">
-        <div className={`relative max-w-2xl w-full p-8 md:p-12 rounded-2xl backdrop-blur-lg bg-[#24160f]/80 border border-[#efd1c0]/20 overflow-hidden ${direction > 0 ? 'animate-slideIn' : 'animate-slideInReverse'}`}>
+        <div className={`relative max-w-2xl w-full p-8 md:p-12 rounded-2xl backdrop-blur-lg bg-[#24160f]/40 border border-[#efd1c0]/20 overflow-hidden ${direction > 0 ? 'animate-slideIn' : 'animate-slideInReverse'}`}>
           {/* Pattern Overlay */}
           <PatternOverlay type={slides[index].pattern} />
           

@@ -101,10 +101,36 @@ function App() {
         </section>
 
         {/* Top Collections */}
-        <WomenCollection />
-        <MenTopCollection />
-        <ArtifactsTopCollection />
-        <BooksTopCollection />
+        <div>
+          <h1 className="text-[#6b1d1d] text-2xl sm:text-3xl md:text-4xl font-bold text-center mt-10 mb-4">
+            Explore Our Top Women Collections
+          </h1>
+          <WomenCollection />
+        </div>
+
+        <div>
+          <h1 className="text-[#6b1d1d] text-2xl sm:text-3xl md:text-4xl font-bold text-center mt-10 mb-4">
+            Explore Our Top Mens Collections
+          </h1>
+          <MenTopCollection />
+        </div>
+
+        <div>
+          <h1 className="text-[#6b1d1d] text-2xl sm:text-3xl md:text-4xl font-bold text-center mt-10 mb-4">
+            Explore Our Top Artifacts Collections
+          </h1>
+          <ArtifactsTopCollection />
+        </div>
+        <div>
+          <h1 className="text-[#6b1d1d] text-2xl sm:text-3xl md:text-4xl font-bold text-center mt-10 mb-4">
+            Explore Our Top Book Collections
+          </h1>
+         <BooksTopCollection />
+        </div>
+        
+        
+        
+        
         <TopCollections />
 
 
