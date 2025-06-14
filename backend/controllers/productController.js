@@ -218,8 +218,6 @@ export const getProductById = async (req, res) => {
     }
 };
 
-// Add to your productController.js
-
 // Get Product Statistics
 export const getProductStats = async (req, res) => {
   try {

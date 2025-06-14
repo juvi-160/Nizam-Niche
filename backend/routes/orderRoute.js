@@ -17,8 +17,8 @@ router.post('/', isAuthenticated, createOrder);
 
 // Admin routes
 router.get('/', isAdmin, getAllOrders);
-router.get('/recent', isAdmin, getRecentOrders);
-router.get('/stats', isAdmin, getOrderStats);
+router.get('/recent', getRecentOrders);
+router.get('/stats', getOrderStats);
 router.put('/:orderId', isAdmin, updateOrderStatus);
 
 export default router;
