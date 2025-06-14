@@ -217,3 +217,84 @@ export const getProductById = async (req, res) => {
         res.status(500).json({ success: false, message: err.message });
     }
 };
+
+// Add to your productController.js
+
+// Get Product Statistics
+export const getProductStats = async (req, res) => {
+  try {
+    // Total product count
+    const totalProducts = await Product.countDocuments();
+    
+    // Low stock products (less than 10 in stock)
+    const lowStockProducts = await Product.countDocuments({
+      stock: { $lt: 10 }
+    });
+    
+    // Out of stock products
+    const outOfStockProducts = await Product.countDocuments({
+      stock: { $lte: 0 }
+    });
+    
+    // Products by category
+    const productsByCategory = await Product.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+    
+    // Products by sub-category
+    const productsBySubCategory = await Product.aggregate([
+      {
+        $group: {
+          _id: "$subCategory",
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: 5 }
+    ]);
+    
+    // Recently added products (last 7 days)
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    
+    const recentProducts = await Product.countDocuments({
+      createdAt: { $gte: sevenDaysAgo }
+    });
+    
+    res.status(200).json({
+      success: true,
+      stats: {
+        totalProducts,
+        lowStockProducts,
+        outOfStockProducts,
+        recentProducts,
+        productsByCategory,
+        productsBySubCategory
+      }
+    });
+    
+  } catch (error) {
+    console.error("Error fetching product stats:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch product statistics" });
+  }
+};
+
+// Get Recent Products
+export const getRecentProducts = async (req, res) => {
+  try {
+    const recentProducts = await Product.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select("title price category images stock");
+      
+    res.status(200).json({ success: true, products: recentProducts });
+  } catch (error) {
+    console.error("Error fetching recent products:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch recent products" });
+  }
+};

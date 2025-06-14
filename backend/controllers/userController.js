@@ -79,6 +79,18 @@ export const registerUser = async (req, res) => {
   }
 };
 
+// Get All Users
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password"); // exclude password
+    res.status(200).json({ success: true, users });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch users" });
+  }
+};
+
+
 // Admin Login
 export const adminLogin = (req, res) => {
   try {
@@ -94,5 +106,78 @@ export const adminLogin = (req, res) => {
   } catch (err) {
     console.error(err);
     res.json({ success: false, message: err.message });
+  }
+};
+
+
+
+// Get User Statistics
+export const getUserStats = async (req, res) => {
+  try {
+    // Total user count
+    const totalUsers = await User.countDocuments();
+    
+    // New users in the last 7 days
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    
+    const newUsers = await User.countDocuments({
+      createdAt: { $gte: sevenDaysAgo }
+    });
+    
+    // Users with items in cart
+    const usersWithCart = await User.countDocuments({
+      $expr: { $gt: [{ $size: "$cartData" }, 0] }
+    });
+    
+    // Users with wishlist items
+    const usersWithWishlist = await User.countDocuments({
+      $expr: { $gt: [{ $size: "$wishList" }, 0] }
+    });
+    
+    // User growth data (last 6 months)
+    const monthlyGrowth = await User.aggregate([
+      {
+        $group: {
+          _id: {
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" }
+          },
+          count: { $sum: 1 }
+        }
+      },
+      { $sort: { "_id.year": 1, "_id.month": 1 } },
+      { $limit: 6 }
+    ]);
+    
+    res.status(200).json({
+      success: true,
+      stats: {
+        totalUsers,
+        newUsers,
+        usersWithCart,
+        usersWithWishlist,
+        monthlyGrowth
+      }
+    });
+    
+  } catch (error) {
+    console.error("Error fetching user stats:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch user statistics" });
+  }
+};
+
+// Get Recent Users
+export const getRecentUsers = async (req, res) => {
+  try {
+    const recentUsers = await User.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .select("-password");
+      
+    res.status(200).json({ success: true, users: recentUsers });
+  } catch (error) {
+    console.error("Error fetching recent users:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch recent users" });
   }
 };

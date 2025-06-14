@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header.jsx";
 import Nav from "../components/Nav.jsx";
+import UserStats from "../components/UserStats.jsx";
+import ProductStats from "../components/ProductStats.jsx";
+import OrderStats from "../components/OrderStats.jsx"; // Add this import
 import {
   BarChart,
   Bar,
@@ -13,13 +16,60 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-
+import axios from "axios";
+import { backendUrl } from "../App"; // Ensure this points to your backend URL
 
 const Dashboard = () => {
+  const [stats, setStats] = useState({
+    users: 0,
+    products: 0,
+    orders: 0,
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  
-  
+  // Fetch all data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+  try {
+    const adminToken = localStorage.getItem('adminToken');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${adminToken}`
+      }
+    };
 
+    const [usersResponse, productsResponse, ordersResponse] = await Promise.all([
+      axios.get(`${backendUrl}/api/user/stats`, config),
+      axios.get(`${backendUrl}/api/product/stats`, config),
+      axios.get(`${backendUrl}/api/order/stats`, config)
+    ]);
+
+    console.log("Users Response:", usersResponse.data);
+    console.log("Products Response:", productsResponse.data);
+    console.log("Orders Response:", ordersResponse.data);
+
+    setStats({
+      users: usersResponse.data.stats.totalUsers,
+      products: productsResponse.data.stats.totalProducts,
+      orders: ordersResponse.data.stats.totalOrders,
+    });
+
+    setLoading(false);
+  } catch (err) {
+    console.error("Failed to fetch data:", err);
+    setError("Failed to load dashboard data");
+    setLoading(false);
+  }
+};
+    fetchData();
+    // Refresh data every 5 minutes
+    const interval = setInterval(fetchData, 300000);
+    return () => clearInterval(interval);
+  }, []);
+
+
+  // Prepare chart data
   const pieData = [
     { name: "Users", value: stats.users },
     { name: "Products", value: stats.products },
@@ -34,7 +84,37 @@ const Dashboard = () => {
     { name: "Orders", count: stats.orders },
   ];
 
-  
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Header />
+        <div className="flex">
+          <div className="w-1/4 bg-[#24160f] min-h-screen shadow-lg">
+            <Nav />
+          </div>
+          <div className="flex-1 p-8 flex items-center justify-center">
+            <p>Loading dashboard data...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Header />
+        <div className="flex">
+          <div className="w-1/4 bg-[#24160f] min-h-screen shadow-lg">
+            <Nav />
+          </div>
+          <div className="flex-1 p-8 flex items-center justify-center">
+            <p className="text-red-500">{error}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -68,11 +148,29 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Charts */}
+          {/* User Statistics Section */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-semibold mb-4">User Statistics</h2>
+            <UserStats />
+          </section>
+
+          {/* Product Statistics Section */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-semibold mb-4">Product Statistics</h2>
+            <ProductStats />
+          </section>
+
+          {/* Order Statistics Section */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-semibold mb-4">Order Statistics</h2>
+            <OrderStats />
+          </section>
+
+          {/* Overview Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
             {/* Bar Chart */}
             <div className="bg-white p-6 rounded shadow">
-              <h2 className="text-lg font-semibold mb-4">Bar Chart</h2>
+              <h2 className="text-lg font-semibold mb-4">System Overview</h2>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={barData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -106,31 +204,6 @@ const Dashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-          </div>
-
-          {/* Recent Orders Table */}
-          <div className="bg-white p-6 rounded shadow">
-            <h2 className="text-lg font-semibold mb-4">Recent Orders</h2>
-            <table className="w-full table-auto text-left border border-gray-300">
-              <thead className="bg-gray-200">
-                <tr>
-                  <th className="px-4 py-2">Order ID</th>
-                  <th className="px-4 py-2">Customer</th>
-                  <th className="px-4 py-2">Status</th>
-                  <th className="px-4 py-2">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentOrders.map((order) => (
-                  <tr key={order.id} className="hover:bg-gray-100">
-                    <td className="px-4 py-2">{order.id}</td>
-                    <td className="px-4 py-2">{order.customer}</td>
-                    <td className="px-4 py-2">{order.status}</td>
-                    <td className="px-4 py-2">{order.amount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>

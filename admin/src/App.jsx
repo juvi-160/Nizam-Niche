@@ -11,7 +11,7 @@ import Users from "./pages/Users.jsx";
 import PrivateRoute from "./components/ProtectedRoute.jsx";
 import Update from "./pages/Update.jsx";
 
-export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+export const backendUrl = "http://localhost:4000";
 export const currency = "₹";
 
 const App = () => {

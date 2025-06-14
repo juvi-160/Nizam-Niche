@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   useReactTable,
   getCoreRowModel,
@@ -8,27 +9,54 @@ import {
 import { Trash2 } from "lucide-react";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import { backendUrl } from "../App"; // Make sure this points to your backend
 
 const Users = () => {
-  const [userData, setUserData] = React.useState([
-    { id: 1, name: "Alice", email: "alice@example.com", status: "Active" },
-    { id: 2, name: "Bob", email: "bob@example.com", status: "Inactive" },
-    { id: 3, name: "Charlie", email: "charlie@example.com", status: "Active" },
-  ]);
+  const [userData, setUserData] = useState([]);
 
-  const handleDelete = (id) => {
-    const filtered = userData.filter(user => user.id !== id);
-    setUserData(filtered);
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/api/user/all`);
+      if (response.data.success) {
+        setUserData(response.data.users);
+      } else {
+        console.error("Failed to fetch users:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const confirmed = window.confirm("Are you sure you want to delete this user?");
+      if (!confirmed) return;
+
+      const response = await axios.delete(`${backendUrl}/api/user/delete/${id}`);
+      if (response.data.success) {
+        setUserData((prev) => prev.filter((user) => user._id !== id));
+      } else {
+        console.error("Failed to delete user:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const columnHelper = createColumnHelper();
 
   const columns = [
-    columnHelper.accessor("id", {
+    columnHelper.accessor((row, index) => index + 1, {
+      id: "serial",
       header: "S.No.",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("name", {
+    columnHelper.accessor((row) => `${row.firstName} ${row.lastName}`, {
+      id: "name",
       header: "Name",
       cell: (info) => info.getValue(),
     }),
@@ -36,29 +64,12 @@ const Users = () => {
       header: "Email",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("status", {
-      header: "Status",
-      cell: (info) => {
-        const status = info.getValue();
-        const color =
-          status === "Active"
-            ? "bg-green-100 text-green-800"
-            : "bg-red-100 text-red-800";
-        return (
-          <span
-            className={`px-3 py-1 rounded-full text-sm font-medium ${color}`}
-          >
-            {status}
-          </span>
-        );
-      },
-    }),
     columnHelper.display({
       id: "actions",
       header: "Actions",
       cell: ({ row }) => (
         <button
-          onClick={() => handleDelete(row.original.id)}
+          onClick={() => handleDelete(row.original._id)}
           className="text-red-600 hover:text-red-800"
           title="Delete"
         >
@@ -78,12 +89,10 @@ const Users = () => {
     <>
       <Header />
       <div className="flex">
-        {/* Sidebar */}
         <div className="w-1/4 bg-[#24160f] min-h-screen shadow-lg">
           <Nav />
         </div>
 
-        {/* Main content */}
         <div className="w-3/4 p-6">
           <h1 className="text-2xl font-semibold mb-4">
             Total Users: {userData.length}
