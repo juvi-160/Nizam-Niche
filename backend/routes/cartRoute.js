@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Corrected Route Setup
 router.post('/add', authUser, addToCart);      // Add item to cart
-router.get('/get', authUser, getUserCart);     // Get user cart
+router.post('/get', authUser, getUserCart);     // Get user cart
 router.put('/update', authUser, updateCart);   // Update quantity
 
 

@@ -7,13 +7,12 @@ const MenTopCollection = () => {
   const [topProducts, setTopProducts] = useState([]);
 
   useEffect(() => {
-    // Filter products that belong to the "Women" category
-    const womenProducts = products.filter(
+    const menProducts = products.filter(
       (product) => product.category?.toLowerCase() === "men"
     );
 
     // Set only the top 5
-    setTopProducts(womenProducts.slice(0, 5));
+    setTopProducts(menProducts.slice(0, 5));
   }, [products]);
 
   return (
